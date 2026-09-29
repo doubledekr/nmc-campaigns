@@ -1,0 +1,91 @@
+name: Build desktop app
+
+# Builds Windows + Mac installers on every push to main that touches the app, and publishes them
+# as a GitHub Release. Installed copies check the latest release and update themselves.
+# Bump "version" in package.json to cut a new release (an unchanged version re-uploads to the same tag).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "main.js"
+      - "preload.js"
+      - "main/**"
+      - "lib/**"
+      - "app/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/build-desktop.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node --test --test-timeout=60000
+
+  build:
+    needs: test
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            script: build:mac
+            artifact: NMC-Campaigns-mac
+            glob: |
+              dist/*.dmg
+              dist/*.zip
+              dist/latest-mac.yml
+          - os: windows-latest
+            script: build:win
+            artifact: NMC-Campaigns-windows
+            glob: |
+              dist/*.exe
+              dist/*.blockmap
+              dist/latest.yml
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run ${{ matrix.script }}
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"   # unsigned until certificates are added (see README)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.glob }}
+          if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: out }
+      - id: v
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.v.outputs.version }}
+          name: NMC Campaigns ${{ steps.v.outputs.version }}
+          make_latest: true
+          body: |
+            Desktop installers built from commit ${{ github.sha }} (build ${{ github.run_number }}).
+
+            - **Windows:** `NMC-Campaigns-Setup-*.exe` — unsigned, so SmartScreen may say "unrecognized app" → More info → Run anyway.
+            - **Mac:** `NMC-Campaigns-*.dmg` — unsigned, so the first open is right-click → Open.
+
+            Leads, campaigns and send logs are stored with the app and survive updates.
+          files: out/**/*

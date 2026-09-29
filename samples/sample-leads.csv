@@ -1,0 +1,241 @@
+Lead ID,Borrower First Name,Borrower Last Name,Email Address,Mobile Phone,Property Address,City,State,Zip Code,Loan Type,Interest Rate,Current UPB,P&I Payment,Est. Home Value,Origination Date,Loan Term,FICO,Revolving Debt,Monthly Debt Payment,Loan Officer,Lead Source
+L10000,JAMES,MARTIN,james.martin@example.com,(843) 555-9104,4574 Cedar Ave,Fresno,CA,26944,Conventional,4.161%,"$300,289",$1630.67,"$436,000",3/9/2021,360,631,"$10,000",$331,Sarah Kim,Referral
+L10001,Marcus,Brown,marcus.brown@example.com,(983) 555-9238,7879 Hillcrest Ln,Tampa,FL,66120,Conventional,7.255%,"$303,915",$2122.66,"$356,000",6/10/2024,360,687,"$5,000",$138,Dave Maxwell,Purchased list
+L10002,Anthony,Williams,anthony.williams@example.com,(983) 555-4903,7044 Cedar Dr,San Antonio,TX,99587,Conventional,5.263%,"$153,762",$912.43,"$255,000",4/6/2022,360,750,"$9,000",$261,Sarah Kim,Purchased list
+L10003,Patricia,Wright,patricia.wright@example.com,(281) 555-9851,3550 Sunset Ave,Spokane,WA,69979,Conventional,3.620%,"$239,088",$1298.93,"$328,000",2/25/2019,360,705,"$32,000",$941,,Web inquiry
+L10004,Heather,Wilson,heather.wilson@example.com,(552) 555-6100,6559 Maple Dr,Seattle,WA,51061,Conv 30yr,7.823%,"$335,284",$2467.37,"$405,000",7/1/2024,360,753,"$21,000",$607,Sarah Kim,Referral
+L10005,Linda,Jackson,linda.jackson@example.com,(620) 555-2133,4062 Oak Ct,Charlotte,NC,45251,FHA,3.736%,"$431,901",$2293.22,"$511,000",5/3/2020,360,732,"$48,000",$1362,Dave Maxwell,Past client
+L10006,Elizabeth,Clark,elizabeth.clark@example.com,(375) 555-3689,1765 Meadow Ln,Atlanta,GA,63037,Conventional,7.559%,"$330,332",$2355.90,"$481,000",3/14/2025,360,710,"$23,000",$659,Dave Maxwell,Past client
+L10007,Carlos,Jackson,carlos.jackson@example.com,(886) 555-9215,9651 Sunset Ave,Raleigh,NC,55892,Conventional,3.255%,"$121,723",$627.09,"$174,000",9/6/2019,360,788,"$14,000",$464,,Past client
+L10008,Jason,Walker,jason.walker@example.com,(337) 555-5546,1645 Sunset Ave,Birmingham,AL,29488,Conventional,8.061%,"$185,366",$1402.25,"$231,000",12/10/2023,360,762,"$33,000",$962,,Web inquiry
+L10009,Tanya,Lewis,tanya.lewis@example.com,(471) 555-4502,2298 Sunset Dr,Denver,CO,68445,FHA,6.608%,"$185,833",$1259.20,"$261,000",2/14/2022,360,621,,,Jordan Reyes,Purchased list
+L10010,Michael,Wright,michael.wright@example.com,(500) 555-5487,3733 Pine Ct,Atlanta,GA,86156,Conventional,7.113%,"$328,741",$2314.80,"$359,000",9/25/2022,360,723,,,Dave Maxwell,Purchased list
+L10011,JENNIFER,CLARK,jennifer.clark@example.com,(899) 555-1224,465 Lakeview Dr,Detroit,MI,46490,FHA,7.039%,"$461,477",$3179.20,"$728,000",11/15/2023,360,746,"$30,000",$925,Jordan Reyes,Past client
+L10012,Angela,Wright,angela.wright@example.com,(828) 555-4364,3139 Maple Ct,Newark,NJ,66552,FHA,4.171%,"$436,028",$2475.58,"$627,000",6/25/2019,360,762,"$57,000",$1910,Dave Maxwell,Web inquiry
+L10013,Maria,Martinez,maria.martinez@example.com,(589) 555-8208,8129 Elm Ave,Savannah,GA,69231,FHA,6.888%,"$296,486",$1993.10,"$436,000",9/7/2024,360,687,,,Dave Maxwell,Purchased list
+L10014,Linda,Clark,linda.clark@example.com,(748) 555-8613,5302 Maple Ln,Nashville,TN,44528,Conventional,5.743%,"$463,591",$2880.75,"$511,000",5/4/2022,360,642,"$18,000",$520,Dave Maxwell,Past client
+L10015,Eric,Miller,eric.miller@example.com,(979) 555-3599,7329 Elm Dr,Grand Rapids,MI,69825,VA,7.894%,"$340,803",$2535.15,"$450,000",2/6/2024,360,692,,,Sarah Kim,Purchased list
+L10016,William,Walker,william.walker@example.com,(449) 555-2297,4458 Sunset Ct,Columbia,SC,84521,FHA,6.528%,"$411,568",$2757.58,"$646,000",5/17/2022,360,715,"$27,000",$676,,Web inquiry
+L10017,Patricia,Young,,(774) 555-4048,4670 Hillcrest Ln,Columbia,SC,29666,FHA,3.109%,"$419,463",$2103.38,"$698,000",2/20/2020,360,745,,,Dave Maxwell,Past client
+L10018,Derek,Anderson,derek.anderson@example.com,(837) 555-8639,3749 Maple Ave,Baltimore,MD,39535,FHA 30 Year,7.028%,"$237,715",$1607.88,"$317,000",5/19/2025,360,772,,,Jordan Reyes,Purchased list
+L10019,William,Clark,william.clark@example.com,(777) 555-4582,4801 Oak St,Spokane,WA,28071,Conventional,4.009%,"$325,805",$1734.80,"$422,000",5/23/2021,360,764,"$56,000",$1575,Dave Maxwell,Past client
+L10020,David,Rodriguez,david.rodriguez@example.com,(646) 555-2793,459 Hillcrest Dr,Jacksonville,FL,54521,FHA 30 Year,3.849%,"$148,877",$778.11,"$254,000",6/4/2021,360,790,"$50,000",$1704,Jordan Reyes,Purchased list
+L10021,Aisha,Martinez,aisha.martinez@example.com,(316) 555-7410,2798 Meadow St,Atlanta,GA,97996,Conventional,7.970%,"$467,903",$3468.06,"$625,000",3/2/2025,360,804,,,,Referral
+L10022,ANGELA,NELSON,angela.nelson@example.com,(894) 555-3201,3810 Sunset Ave,Savannah,GA,30634,FHA,3.344%,"$403,798",$2074.31,"$671,000",2/14/2020,360,631,"$14,000",$392,,Web inquiry
+L10023,David,Clark,david.clark@example.com,(548) 555-8334,4321 Meadow Ave,Seattle,WA,73883,FHA,7.507%,"$285,783",$2071.07,"$443,000",4/1/2023,360,774,,,Dave Maxwell,Referral
+L10024,Anthony,Brown,anthony.brown@example.com,(532) 555-7703,6011 Maple Ln,Nashville,TN,83831,Conv 30yr,7.870%,"$234,074",$1717.64,"$311,000",4/20/2025,360,654,,,Jordan Reyes,Past client
+L10025,Latoya,Harris,latoya.harris@example.com,(578) 555-8229,7460 Meadow Ave,San Antonio,TX,65721,VA,6.670%,"$408,149",$2669.62,"$587,000",3/23/2025,360,638,"$23,000",$665,Dave Maxwell,Past client
+L10026,Tanya,Davis,tanya.davis@example.com,(269) 555-7162,1609 Oak Ave,Phoenix,AZ,31375,Conventional,7.283%,"$401,653",$2792.52,"$598,000",2/24/2025,360,625,"$26,000",$670,Sarah Kim,Past client
+L10027,Angela,Jackson,angela.jackson@example.com,(536) 555-7604,1966 Lakeview Ln,Phoenix,AZ,63517,Conventional,3.973%,"$410,246",$2198.43,"$585,000",12/8/2020,360,693,,,Jordan Reyes,Past client
+L10028,Aisha,Scott,aisha.scott@example.com,(219) 555-3354,5956 Park Ave,Tucson,AZ,70422,FHA,7.203%,"$219,832",$1507.33,"$296,000",9/21/2025,360,813,,,,Referral
+L10029,Carlos,King,carlos.king@example.com,(868) 555-6052,8438 Park Dr,Raleigh,NC,17737,VA,3.672%,"$264,579",$1408.16,"$476,000",1/26/2020,360,705,"$38,000",$1182,Jordan Reyes,Web inquiry
+L10030,Robert,Davis,robert.davis@example.com,(752) 555-5463,5320 Park Dr,Birmingham,AL,65872,Conv 30yr,6.520%,"$223,824",$1482.11,"$331,000",2/2/2023,360,771,"$41,000",$1411,Sarah Kim,Referral
+L10031,Samantha,Wilson,samantha.wilson@example.com,(741) 555-3785,9650 Washington St,Denver,CO,19563,Conventional,6.791%,"$333,869",$2214.42,"$488,000",1/1/2025,360,613,,,,Past client
+L10032,Angela,Green,angela.green@example.com,(684) 555-8015,9967 Oak Dr,Grand Rapids,MI,38794,Conventional,3.573%,"$212,782",$1096.53,"$298,000",11/10/2020,360,613,,,Dave Maxwell,Past client
+L10033,LATOYA,WILLIAMS,not-an-email,(931) 555-5202,4777 Elm Dr,Seattle,WA,17620,Conventional,7.062%,"$172,009",$1178.24,"$246,000",7/5/2024,360,626,"$13,000",$412,Dave Maxwell,Web inquiry
+L10034,Kevin,White,kevin.white@example.com,(541) 555-7878,5460 Elm Dr,Raleigh,NC,89821,Conventional,2.841%,"$380,918",$1896.12,"$574,000",6/10/2019,360,629,,,,Purchased list
+L10035,Jason,Harris,jason.harris@example.com,(253) 555-7434,120 Elm St,Cleveland,OH,54276,VA,3.496%,"$236,956",$1247.66,"$313,000",10/14/2019,360,678,"$35,000",$1059,Dave Maxwell,Past client
+L10036,Aisha,Harris,aisha.harris@example.com,(927) 555-3822,6606 Lakeview Ct,Dallas,TX,83129,Conv 30yr,3.137%,"$146,400",$720.74,"$205,000",11/19/2020,360,696,"$48,000",$1329,Jordan Reyes,Referral
+L10037,Linda,Wright,linda.wright@example.com,(469) 555-2560,521 Elm Ln,Raleigh,NC,93970,Conventional,6.829%,"$401,987",$2661.14,"$549,000",7/6/2025,360,741,,,Sarah Kim,Purchased list
+L10038,Anthony,Brown,anthony.brown38@example.com,(366) 555-2751,9254 Maple Ct,Ann Arbor,MI,92845,FHA,7.243%,"$498,788",$3524.24,"$582,000",5/3/2023,360,768,,,Jordan Reyes,Web inquiry
+L10039,Maria,Anderson,maria.anderson@example.com,(874) 555-1630,8794 Oak Ave,Jacksonville,FL,11681,Conventional,7.586%,"$383,924",$2742.84,"$581,000",4/2/2025,360,765,"$44,000",$1539,Sarah Kim,Referral
+L10040,Carlos,Clark,carlos.clark@example.com,(977) 555-2006,1876 Washington St,Cleveland,OH,65869,Conventional,2.620%,"$142,312",$694.43,"$263,000",5/11/2019,360,783,"$54,000",$1427,Dave Maxwell,Web inquiry
+L10041,James,Wilson,james.wilson@example.com,(362) 555-1340,2565 Oak Ct,Houston,TX,38690,Conventional,3.386%,"$315,675",$1624.73,"$410,000",3/25/2020,360,747,"$7,000",$204,Dave Maxwell,Purchased list
+L10042,Carlos,Garcia,carlos.garcia@example.com,(267) 555-3196,178 Ridge Ave,Baltimore,MD,14858,Conventional,3.959%,"$126,680",$703.07,"$179,000",7/8/2019,360,658,"$11,000",$349,Dave Maxwell,Purchased list
+L10043,Brian,Brown,brian.brown@example.com,(966) 555-5358,3911 Hillcrest St,Atlanta,GA,50817,Conventional,2.672%,"$196,960",$929.54,"$335,000",8/13/2020,360,735,"$44,000",$1190,Dave Maxwell,Purchased list
+L10044,AISHA,WALKER,aisha.walker@example.com,(212) 555-3093,7579 Lakeview Dr,Columbus,OH,43198,Conventional,7.018%,"$405,327",$2825.90,"$491,000",10/19/2022,360,618,"$37,000",$969,Jordan Reyes,Past client
+L10045,Carlos,Martinez,carlos.martinez@example.com,(753) 555-2588,6478 Meadow Ln,San Antonio,TX,30823,FHA,7.162%,"$384,428",$2644.11,"$450,000",1/22/2025,360,642,,,Dave Maxwell,Purchased list
+L10046,Eric,Johnson,eric.johnson@example.com,(968) 555-9314,4775 Oak Dr,Tucson,AZ,98468,FHA,7.309%,"$356,257",$2470.36,"$473,000",8/3/2025,360,714,,,Dave Maxwell,Past client
+L10047,Monique,Davis,monique.davis@example.com,(339) 555-3020,2171 Lakeview Dr,Tampa,FL,12574,Conventional,2.988%,"$203,477",$972.41,"$339,000",5/24/2021,360,610,"$20,000",$579,Sarah Kim,Past client
+L10048,Linda,Anderson,linda.anderson@example.com,(665) 555-4686,8569 Park Ln,Fresno,CA,95920,FHA 30 Year,5.304%,"$317,059",$1872.25,"$392,000",10/11/2022,360,613,,,Sarah Kim,Referral
+L10049,Jason,Rodriguez,jason.rodriguez@example.com,(500) 555-1004,1398 Elm Ct,Chicago,IL,20486,FHA,3.846%,"$209,051",$1119.97,"$248,000",6/9/2020,360,802,"$22,000",$568,Jordan Reyes,Web inquiry
+L10050,Latoya,Brown,latoya.brown@example.com,(914) 555-2854,1927 Washington Ave,Tampa,FL,50598,Conventional,4.085%,"$152,751",$848.94,"$241,000",12/18/2019,360,804,"$28,000",$821,,Past client
+L10051,Marcus,Davis,marcus.davis@example.com,(384) 555-3998,3639 Pine Ave,Newark,NJ,13589,FHA,6.928%,"$175,010",$1182.31,"$220,000",8/8/2024,360,745,"$4,000",$134,Dave Maxwell,Past client
+L10052,Carlos,Brown,carlos.brown@example.com,(224) 555-5083,1921 Cedar Ave,Denver,CO,83441,FHA,3.967%,"$276,400",$1521.68,"$491,000",11/27/2019,360,787,"$25,000",$872,Jordan Reyes,Referral
+L10053,Robert,Green,robert.green@example.com,(527) 555-8291,5925 Lakeview Dr,Indianapolis,IN,15521,FHA 30 Year,3.868%,"$192,549",$1066.53,"$270,000",4/1/2019,360,797,,,Jordan Reyes,Web inquiry
+L10054,Heather,Martin,heather.martin@example.com,(505) 555-1174,6123 Lakeview Ln,Phoenix,AZ,39457,FHA 30 Year,7.178%,"$346,795",$2404.45,"$402,000",6/27/2024,360,668,,,Jordan Reyes,Purchased list
+L10055,DEREK,CLARK,derek.clark@example.com,(427) 555-7243,6022 Meadow Ave,Charlotte,NC,56648,Conventional,7.431%,"$395,279",$2833.65,"$609,000",8/15/2023,360,810,"$34,000",$943,Sarah Kim,Referral
+L10056,William,Hall,william.hall@example.com,(933) 555-6840,5589 Sunset St,Memphis,TN,56679,FHA 30 Year,4.173%,"$347,396",$1896.18,"$585,000",1/7/2021,360,697,"$50,000",$1308,Dave Maxwell,Past client
+L10057,Kevin,Baker,kevin.baker@example.com,(252) 555-8272,2180 Cedar Ct,Memphis,TN,61025,Conventional,2.778%,"$353,162",$1770.08,"$520,000",1/22/2019,360,630,,,Dave Maxwell,Web inquiry
+L10058,Tyrone,Davis,tyrone.davis@example.com,(254) 555-8761,7861 Washington Ln,Houston,TX,38012,Conventional,7.229%,"$409,461",$2831.98,"$640,000",2/7/2025,360,697,"$49,000",$1337,Dave Maxwell,Web inquiry
+L10059,Anthony,Anderson,anthony.anderson@example.com,(724) 555-2193,8665 Oak Ln,Seattle,WA,90519,Conv 30yr,3.034%,"$397,951",$1956.36,"$708,000",7/20/2020,360,725,"$18,000",$588,Sarah Kim,Purchased list
+L10060,Jennifer,Adams,jennifer.adams@example.com,(328) 555-9756,3429 Cedar Dr,Sacramento,CA,58691,Conventional,3.824%,"$148,279",$817.84,"$193,000",4/1/2019,360,685,"$12,000",$366,,Purchased list
+L10061,Jennifer,Thomas,jennifer.thomas@example.com,(516) 555-9998,9621 Oak Ln,Detroit,MI,51089,Conv 30yr,7.381%,"$269,362",$1907.30,"$309,000",4/10/2024,360,657,"$19,000",$627,Sarah Kim,Web inquiry
+L10062,Patricia,Robinson,patricia.robinson@example.com,(471) 555-1074,529 Hillcrest Ct,Memphis,TN,52741,FHA,5.522%,"$188,713",$1143.98,"$258,000",7/22/2022,360,804,,,Dave Maxwell,Past client
+L10063,Angela,Baker,angela.baker@example.com,(255) 555-4838,248 Cedar Ln,Orlando,FL,82134,Conventional,7.849%,"$430,505",$3167.77,"$625,000",10/24/2024,360,748,,,Jordan Reyes,Past client
+L10064,Derek,Lewis,derek.lewis@example.com,(618) 555-9679,6292 Park St,Dallas,TX,41102,FHA,7.743%,"$389,199",$2870.89,"$540,000",8/10/2023,360,804,"$54,000",$1616,Jordan Reyes,Web inquiry
+L10065,Tanya,Williams,tanya.williams@example.com,(373) 555-7232,8472 Ridge Ct,Birmingham,AL,20274,Conventional,4.185%,"$426,274",$2357.82,"$637,000",7/22/2020,360,741,,,,Referral
+L10066,JASON,SCOTT,jason.scott@example.com,(753) 555-2686,855 Ridge Ln,Raleigh,NC,96588,Conventional,2.856%,"$419,080",$1974.26,"$536,000",5/5/2021,360,692,"$21,000",$626,Dave Maxwell,Past client
+L10067,Elizabeth,Young,elizabeth.young@example.com,(246) 555-7829,5686 Oak Ln,Orlando,FL,95263,FHA,6.140%,"$384,244",$2458.70,"$456,000",12/16/2022,360,644,"$34,000",$1043,Sarah Kim,Past client
+L10068,James,Rodriguez,james.rodriguez@example.com,(242) 555-8321,6436 Meadow Ave,Atlanta,GA,59002,Conventional,2.997%,"$280,125",$1319.13,"$353,000",12/27/2021,360,770,"$30,000",$935,Dave Maxwell,Purchased list
+L10069,Robert,Thomas,robert.thomas@example.com,(866) 555-9593,8508 Oak Ct,Memphis,TN,79178,FHA,7.723%,"$417,373",$3051.11,"$446,000",4/22/2024,360,623,"$8,000",$208,Jordan Reyes,Web inquiry
+L10070,Marcus,Jones,marcus.jones@example.com,(207) 555-9845,8828 Ridge Dr,Nashville,TN,94820,Conv 30yr,6.996%,"$147,672",$997.53,"$211,000",3/26/2025,360,670,"$52,000",$1603,Dave Maxwell,Past client
+L10071,Monique,Clark,monique.clark@example.com,(303) 555-7023,9475 Pine Ct,Ann Arbor,MI,78324,FHA,6.418%,"$158,433",$1046.60,"$246,000",8/10/2022,360,811,"$24,000",$662,Dave Maxwell,Purchased list
+L10072,Keisha,Davis,keisha.davis@example.com,(864) 555-9164,8275 Meadow Ct,Birmingham,AL,77650,Conventional,2.855%,"$250,803",$1237.41,"$436,000",10/16/2019,360,673,,,Jordan Reyes,Past client
+L10073,James,Adams,james.adams@example.com,(962) 555-8649,8891 Elm Ct,Dallas,TX,96610,Conventional,6.726%,"$170,924",$1151.62,"$249,000",4/4/2023,360,719,"$27,000",$772,Jordan Reyes,Purchased list
+L10074,Samantha,Jones,samantha.jones@example.com,(343) 555-1987,186 Sunset Ave,Orlando,FL,99141,Conventional,7.397%,"$366,461",$2637.12,"$467,000",1/24/2023,360,699,,,Jordan Reyes,Referral
+L10075,William,Miller,william.miller@example.com,(849) 555-1281,6600 Maple Ct,Savannah,GA,91450,FHA 30 Year,3.454%,"$373,880",$1933.24,"$459,000",4/19/2020,360,629,,,,Past client
+L10076,Brian,Johnson,brian.johnson@example.com,(228) 555-1751,2648 Lakeview Ct,Chicago,IL,79249,FHA,7.664%,"$266,195",$1925.37,"$322,000",10/3/2024,360,734,,,Sarah Kim,Purchased list
+L10077,RACHEL,BROWN,rachel.brown@example.com,(424) 555-7314,6207 Ridge St,Tucson,AZ,43634,FHA 30 Year,6.912%,"$221,287",$1470.49,"$330,000",12/3/2025,360,655,"$30,000",$876,Dave Maxwell,Web inquiry
+L10078,Aisha,Anderson,aisha.anderson@example.com,(821) 555-8926,9494 Oak St,Fresno,CA,46617,FHA,7.017%,"$421,770",$2852.49,"$500,000",4/7/2025,360,660,"$54,000",$1382,Jordan Reyes,Referral
+L10079,Michael,Hall,michael.hall@example.com,(398) 555-6859,2265 Cedar St,Orlando,FL,34739,Conventional,3.784%,"$288,083",$1483.45,"$443,000",10/27/2021,360,742,"$40,000",$1188,Dave Maxwell,Past client
+L10080,Patricia,Young,patricia.young80@example.com,(272) 555-2743,6457 Lakeview Ln,Columbus,OH,15040,FHA 30 Year,7.334%,"$223,890",$1561.52,"$291,000",4/9/2025,360,785,"$54,000",$1598,Dave Maxwell,Referral
+L10081,Rachel,Wright,rachel.wright@example.com,(686) 555-7324,6853 Ridge Ave,Tucson,AZ,86912,Conv 30yr,4.053%,"$279,882",$1518.35,"$345,000",10/3/2020,360,685,,,Sarah Kim,Referral
+L10082,Rachel,White,rachel.white@example.com,(686) 555-2317,8131 Park Ave,Chicago,IL,98241,VA,7.167%,"$470,505",$3220.42,"$686,000",7/20/2025,360,703,"$21,000",$621,,Past client
+L10083,Angela,White,angela.white@example.com,(658) 555-6778,6704 Maple St,Ann Arbor,MI,25492,FHA,7.079%,"$274,150",$1897.83,"$330,000",10/4/2023,360,688,,,Jordan Reyes,Referral
+L10084,Marcus,Johnson,marcus.johnson@example.com,(518) 555-3191,7495 Ridge Ave,Chicago,IL,68150,FHA,3.972%,"$320,937",$1779.43,"$485,000",8/14/2019,360,799,"$20,000",$503,,Purchased list
+L10085,Maria,Johnson,maria.johnson@example.com,(721) 555-9141,7698 Elm Ln,Memphis,TN,16550,Conv 30yr,3.328%,"$296,799",$1494.30,"$455,000",10/8/2020,360,788,,,Sarah Kim,Past client
+L10086,Maria,Lewis,maria.lewis@example.com,(539) 555-7922,5813 Maple St,Memphis,TN,69204,Conventional,7.435%,"$400,643",$2890.19,"$464,000",2/7/2023,360,783,"$49,000",$1385,Jordan Reyes,Purchased list
+L10087,Robert,Hall,robert.hall@example.com,(275) 555-6559,5035 Hillcrest Dr,Tampa,FL,93570,Conv 30yr,3.796%,"$332,399",$1713.83,"$560,000",10/15/2021,360,791,"$49,000",$1693,Sarah Kim,Past client
+L10088,ROBERT,THOMPSON,robert.thompson@example.com,(542) 555-9041,3476 Maple Dr,Savannah,GA,13786,FHA,7.007%,"$325,370",$2216.98,"$398,000",7/5/2024,360,665,"$18,000",$534,Jordan Reyes,Web inquiry
+L10089,Angela,Adams,angela.adams@example.com,(613) 555-1927,7713 Meadow Ave,Denver,CO,14439,FHA,7.399%,"$194,002",$1363.81,"$203,000",2/3/2025,360,650,"$55,000",$1402,,Past client
+L10090,Tyrone,Miller,tyrone.miller@example.com,(562) 555-7620,3456 Washington Ave,Phoenix,AZ,90538,Conventional,2.793%,"$174,253",$821.05,"$269,000",2/9/2021,360,644,"$36,000",$966,,Web inquiry
+L10091,Angela,Green,angela.green91@example.com,(878) 555-1377,7025 Cedar Dr,Charlotte,NC,74030,Conventional,3.805%,"$358,243",$1986.12,"$483,000",1/16/2019,360,679,"$29,000",$912,Dave Maxwell,Past client
+L10092,Marcus,White,marcus.white@example.com,(692) 555-7438,4890 Oak Ct,Spokane,WA,68961,FHA 30 Year,7.565%,"$341,674",$2420.59,"$505,000",12/26/2025,360,797,"$20,000",$507,Sarah Kim,Past client
+L10093,Robert,Brown,robert.brown@example.com,(604) 555-8802,9168 Oak Dr,Chicago,IL,83926,Conv 30yr,7.877%,"$460,244",$3430.21,"$552,000",10/13/2023,360,772,"$55,000",$1782,Sarah Kim,Past client
+L10094,Samantha,Hall,samantha.hall@example.com,(396) 555-9436,9227 Elm Ct,Birmingham,AL,81593,FHA,3.491%,"$273,045",$1457.75,"$447,000",4/21/2019,360,717,,,Sarah Kim,Referral
+L10095,Patricia,Lewis,patricia.lewis@example.com,(901) 555-6198,2443 Lakeview St,Spokane,WA,54813,Conventional,6.406%,"$296,911",$1959.14,"$430,000",8/19/2022,360,688,,,Dave Maxwell,Referral
+L10096,Anthony,Miller,anthony.miller@example.com,(376) 555-4994,1345 Meadow Dr,Houston,TX,16430,Conv 30yr,2.753%,"$182,962",$902.60,"$288,000",6/23/2019,360,720,,,Dave Maxwell,Web inquiry
+L10097,Robert,Williams,robert.williams@example.com,(322) 555-3009,7062 Ridge Ln,Fresno,CA,59077,Conv 30yr,7.395%,"$295,917",$2062.29,"$319,000",12/3/2025,360,702,"$29,000",$924,Sarah Kim,Past client
+L10098,Heather,Clark,heather.clark@example.com,(666) 555-6592,5326 Ridge Ct,Fresno,CA,98730,Conventional,6.065%,"$410,887",$2620.30,"$638,000",9/5/2022,360,736,"$41,000",$1121,Dave Maxwell,Past client
+L10099,LUIS,WILLIAMS,luis.williams@example.com,(551) 555-9409,9465 Hillcrest Ct,Detroit,MI,24880,FHA,7.285%,"$441,490",$3100.99,"$656,000",3/23/2024,360,784,,,Sarah Kim,Web inquiry
+L10100,Carlos,Hall,carlos.hall@example.com,(954) 555-8521,4550 Park Ave,Newark,NJ,22168,Conventional,2.977%,"$269,403",$1332.58,"$385,000",2/11/2020,360,797,"$52,000",$1362,,Referral
+L10101,Linda,Green,linda.green@example.com,(357) 555-8735,3925 Ridge Ave,Sacramento,CA,57635,Conv 30yr,7.092%,"$217,993",$1477.24,"$284,000",10/24/2025,360,747,,,Sarah Kim,Past client
+L10102,Eric,Johnson,eric.johnson102@example.com,(448) 555-9590,1742 Washington Ct,Indianapolis,IN,36185,Conv 30yr,7.574%,"$173,120",$1239.51,"$213,000",12/1/2024,360,731,"$30,000",$757,Dave Maxwell,Past client
+L10103,Michael,Clark,michael.clark@example.com,(718) 555-2713,5233 Hillcrest Ave,Columbus,OH,15167,Conv 30yr,3.962%,"$231,299",$1235.60,"$302,000",1/3/2021,360,708,,,Sarah Kim,Past client
+L10104,Jennifer,Scott,jennifer.scott@example.com,(766) 555-2040,4640 Sunset St,Grand Rapids,MI,32407,VA,3.859%,"$358,643",$1971.22,"$616,000",7/13/2019,360,808,,,Dave Maxwell,Purchased list
+L10105,Carlos,Garcia,carlos.garcia105@example.com,(922) 555-3480,5664 Cedar Dr,Orlando,FL,99405,FHA,3.146%,"$201,006",$966.36,"$310,000",10/6/2021,360,651,"$57,000",$1805,Sarah Kim,Referral
+L10106,Elizabeth,Hall,elizabeth.hall@example.com,(207) 555-1481,6932 Washington Ave,Charlotte,NC,78063,Conventional,3.159%,"$126,446",$658.26,"$235,000",1/18/2019,360,710,"$38,000",$1185,Jordan Reyes,Referral
+L10107,Elizabeth,Thompson,elizabeth.thompson@example.com,(502) 555-1249,2637 Cedar St,Baltimore,MD,17487,FHA,6.218%,"$385,256",$2509.87,"$452,000",4/8/2022,360,662,"$44,000",$1239,Jordan Reyes,Purchased list
+L10108,Robert,Williams,robert.williams108@example.com,(503) 555-9915,3644 Sunset Ct,Spokane,WA,76977,Conventional,4.157%,"$271,676",$1498.49,"$448,000",7/24/2020,360,655,"$35,000",$899,Dave Maxwell,Past client
+L10109,Kevin,Adams,kevin.adams@example.com,(552) 555-8078,7856 Maple St,Sacramento,CA,35288,Conventional,3.823%,"$382,252",$2084.13,"$505,000",9/15/2019,360,739,,,,Referral
+L10110,ELIZABETH,THOMPSON,elizabeth.thompson110@example.com,(225) 555-1921,1772 Cedar St,Dallas,TX,69254,VA,6.911%,"$212,381",$1443.87,"$314,000",12/18/2023,360,767,"$14,000",$449,Dave Maxwell,Referral
+L10111,Luis,Adams,luis.adams@example.com,(530) 555-9716,5197 Pine St,Seattle,WA,25161,Conv 30yr,7.481%,"$221,066",$1577.23,"$278,000",6/9/2024,360,629,"$20,000",$620,,Purchased list
+L10112,Luis,Brown,luis.brown@example.com,(597) 555-1330,4794 Hillcrest St,Orlando,FL,40988,VA,5.175%,"$168,861",$985.64,"$250,000",9/26/2022,360,630,"$24,000",$636,Dave Maxwell,Referral
+L10113,Rachel,Anderson,rachel.anderson@example.com,(949) 555-6685,4543 Oak St,San Antonio,TX,58633,Conv 30yr,3.338%,"$239,430",$1188.20,"$279,000",5/2/2021,360,790,,,,Web inquiry
+L10114,Rachel,Scott,rachel.scott@example.com,(659) 555-1208,2211 Lakeview St,Columbia,SC,50107,Conventional,7.419%,"$260,083",$1866.07,"$389,000",6/26/2023,360,807,,,,Past client
+L10115,Kevin,Thompson,kevin.thompson@example.com,(476) 555-2785,1984 Oak Dr,Ann Arbor,MI,71513,FHA 30 Year,3.638%,"$385,687",$2064.59,"$673,000",9/11/2019,360,721,"$55,000",$1834,Dave Maxwell,Web inquiry
+L10116,Marcus,Williams,marcus.williams@example.com,(448) 555-1487,3912 Pine Dr,Fresno,CA,36375,FHA,2.652%,"$304,598",$1479.34,"$540,000",8/13/2019,360,621,"$53,000",$1523,Dave Maxwell,Purchased list
+L10117,Aisha,Martin,aisha.martin@example.com,(746) 555-8332,7795 Oak Ln,Orlando,FL,54937,Conventional,7.209%,"$263,850",$1807.16,"$296,000",11/26/2025,360,793,"$40,000",$1090,Sarah Kim,Web inquiry
+L10118,Patricia,Hall,patricia.hall@example.com,(662) 555-4569,4016 Hillcrest Ct,Tucson,AZ,46509,Conventional,6.889%,"$300,006",$2013.03,"$385,000",11/3/2024,360,803,"$52,000",$1709,Dave Maxwell,Past client
+L10119,Jennifer,Clark,jennifer.clark119@example.com,(460) 555-5796,5727 Elm St,Nashville,TN,86090,FHA,3.343%,"$206,486",$1043.62,"$326,000",9/16/2020,360,630,"$50,000",$1540,,Referral
+L10120,Maria,Nelson,maria.nelson@example.com,(467) 555-7333,7025 Sunset Dr,Houston,TX,85121,FHA 30 Year,5.872%,"$438,540",$2755.79,"$535,000",6/20/2022,360,649,"$50,000",$1560,,Purchased list
+L10121,JASON,SCOTT,jason.scott121@example.com,(703) 555-9965,624 Park Ave,Fresno,CA,48271,Conventional,3.831%,"$438,010",$2348.08,"$662,000",5/4/2020,360,782,"$33,000",$848,Dave Maxwell,Past client
+L10122,Heather,Robinson,heather.robinson@example.com,(221) 555-2723,6577 Pine Ct,Raleigh,NC,24578,Conventional,6.798%,"$176,977",$1199.33,"$282,000",5/14/2023,360,627,,,Dave Maxwell,Referral
+L10123,Aisha,Johnson,aisha.johnson@example.com,(769) 555-6035,9663 Cedar Ln,Memphis,TN,54766,Conv 30yr,7.252%,"$217,853",$1528.32,"$271,000",1/26/2024,360,635,,,Sarah Kim,Purchased list
+L10124,Linda,Johnson,linda.johnson@example.com,(885) 555-3401,6415 Park Ct,Grand Rapids,MI,69835,FHA 30 Year,4.057%,"$413,500",$2230.43,"$508,000",1/5/2021,360,657,,,,Referral
+L10125,Marcus,Green,marcus.green@example.com,(814) 555-1510,718 Park St,San Antonio,TX,38942,Conventional,6.541%,"$352,355",$2266.09,"$482,000",7/24/2025,360,665,"$35,000",$961,Jordan Reyes,Past client
+L10126,Aisha,Jones,aisha.jones@example.com,(754) 555-4002,7573 Sunset Dr,Houston,TX,73257,Conventional,6.661%,"$463,332",$3039.90,"$698,000",11/2/2024,360,673,"$37,000",$1162,Jordan Reyes,Web inquiry
+L10127,Latoya,Green,latoya.green@example.com,(720) 555-1210,1789 Elm Dr,Jacksonville,FL,27553,VA,7.491%,"$270,704",$1942.06,"$365,000",1/3/2024,360,695,"$56,000",$1645,Jordan Reyes,Past client
+L10128,Michael,Scott,michael.scott@example.com,(492) 555-9413,9445 Sunset Ave,Atlanta,GA,43366,FHA,2.671%,"$150,843",$703.06,"$193,000",1/2/2021,360,657,"$49,000",$1552,Dave Maxwell,Referral
+L10129,Kevin,Brown,kevin.brown@example.com,(708) 555-6146,6974 Sunset St,Tucson,AZ,28817,Conventional,5.183%,"$192,716",$1134.49,"$316,000",4/3/2022,360,641,,,,Past client
+L10130,Samantha,Clark,samantha.clark@example.com,(697) 555-4190,7157 Elm Ave,Fresno,CA,44772,FHA 30 Year,7.399%,"$205,283",$1446.98,"$279,000",11/19/2024,360,678,,,Dave Maxwell,Web inquiry
+L10131,Monique,Harris,monique.harris@example.com,(460) 555-6216,8239 Elm Ave,Grand Rapids,MI,68612,Conventional,5.067%,"$431,126",$2477.47,"$641,000",12/18/2022,360,624,"$51,000",$1303,,Past client
+L10132,HEATHER,LEWIS,heather.lewis@example.com,(497) 555-9468,4969 Elm Dr,Baltimore,MD,78004,FHA 30 Year,7.274%,"$382,907",$2707.93,"$450,000",7/18/2023,360,657,"$26,000",$853,,Past client
+L10133,Kevin,Green,kevin.green@example.com,(738) 555-7928,4531 Maple Ave,Sacramento,CA,24315,Conventional,3.711%,"$423,972",$2286.03,"$565,000",9/12/2019,360,766,"$18,000",$536,Dave Maxwell,Referral
+L10134,Brian,Wilson,brian.wilson@example.com,(611) 555-8325,8099 Pine Ln,Fresno,CA,89094,Conventional,3.887%,"$401,546",$2128.62,"$656,000",1/20/2021,360,741,,,Dave Maxwell,Purchased list
+L10135,Tanya,Wright,tanya.wright@example.com,(551) 555-2561,8721 Sunset Ct,Baltimore,MD,46079,FHA,6.759%,"$277,785",$1817.82,"$419,000",12/19/2025,360,657,,,,Referral
+L10136,Kevin,Rodriguez,kevin.rodriguez@example.com,(734) 555-7710,8427 Sunset Ln,Tucson,AZ,15795,FHA 30 Year,2.617%,"$437,079",$2030.34,"$544,000",12/8/2020,360,676,"$38,000",$985,Sarah Kim,Past client
+L10137,Maria,Robinson,maria.robinson@example.com,(459) 555-8810,9569 Ridge Ln,Columbia,SC,43176,Conv 30yr,6.528%,"$432,142",$2770.26,"$661,000",9/17/2025,360,631,"$34,000",$888,Jordan Reyes,Referral
+L10138,Elizabeth,Jones,elizabeth.jones@example.com,(750) 555-9777,4964 Hillcrest St,Dallas,TX,71629,Conventional,7.159%,"$204,128",$1406.04,"$242,000",11/5/2024,360,754,"$41,000",$1266,Dave Maxwell,Purchased list
+L10139,Tanya,Walker,tanya.walker@example.com,(431) 555-7394,3878 Park Dr,Cleveland,OH,96183,VA,3.200%,"$431,274",$2162.37,"$516,000",6/11/2020,360,702,"$22,000",$590,Sarah Kim,Referral
+L10140,Rachel,Anderson,rachel.anderson140@example.com,(931) 555-5066,6507 Hillcrest St,Indianapolis,IN,50461,Conv 30yr,2.683%,"$256,536",$1218.08,"$424,000",6/3/2020,360,704,"$51,000",$1511,,Web inquiry
+L10141,Jason,Williams,jason.williams@example.com,(214) 555-6902,1263 Elm Dr,Columbus,OH,53778,Conventional,7.436%,"$311,120",$2216.44,"$410,000",3/12/2024,360,685,"$50,000",$1729,Dave Maxwell,Web inquiry
+L10142,Aisha,Scott,aisha.scott142@example.com,(925) 555-4946,1348 Hillcrest Ln,Tucson,AZ,24169,FHA,7.733%,"$225,159",$1659.34,"$313,000",8/2/2023,360,806,"$39,000",$1183,Sarah Kim,Referral
+L10143,RACHEL,JONES,rachel.jones@example.com,(966) 555-3773,3726 Washington Ave,Birmingham,AL,10246,Conventional,5.435%,"$447,545",$2705.76,"$635,000",3/26/2022,360,658,,,Sarah Kim,Past client
+L10144,Luis,White,luis.white@example.com,(717) 555-4498,3316 Elm Ln,Dallas,TX,12433,Conventional,6.733%,"$177,850",$1184.85,"$271,000",3/11/2024,360,688,,,Sarah Kim,Purchased list
+L10145,Aisha,Clark,aisha.clark@example.com,(780) 555-7056,2396 Sunset Ct,Columbia,SC,59802,FHA,3.829%,"$188,127",$1019.40,"$235,000",12/13/2019,360,754,,,Dave Maxwell,Past client
+L10146,Patricia,Young,patricia.young146@example.com,(774) 555-7053,5874 Washington Ln,Columbia,SC,86066,Conventional,7.446%,"$424,462",$3032.54,"$486,000",1/6/2024,360,776,"$13,000",$361,,Past client
+L10147,Maria,Adams,maria.adams@example.com,(588) 555-5944,7157 Sunset Ave,Birmingham,AL,85965,Conventional,4.918%,"$264,033",$1515.64,"$369,000",3/10/2022,360,807,"$21,000",$675,Dave Maxwell,Purchased list
+L10148,Maria,Thomas,maria.thomas@example.com,(532) 555-4456,6342 Hillcrest Ave,Charlotte,NC,33111,VA,6.634%,"$275,032",$1826.58,"$424,000",9/1/2023,360,633,"$19,000",$496,,Past client
+L10149,Michael,Lewis,michael.lewis@example.com,(276) 555-5689,746 Lakeview Ave,Dallas,TX,24321,Conventional,2.821%,"$251,651",$1227.75,"$313,000",1/12/2020,360,810,"$29,000",$745,Jordan Reyes,Past client
+L10150,Carlos,Scott,carlos.scott@example.com,(585) 555-4751,9831 Park Ct,Savannah,GA,77062,Conventional,6.659%,"$214,443",$1445.69,"$301,000",10/17/2022,360,789,"$12,000",$344,Dave Maxwell,Past client
+L10151,Angela,White,angela.white151@example.com,(826) 555-2288,3877 Sunset St,Orlando,FL,68548,Conventional,3.146%,"$237,260",$1138.27,"$356,000",11/18/2021,360,800,"$51,000",$1485,Jordan Reyes,Purchased list
+L10152,Latoya,Johnson,latoya.johnson@example.com,(324) 555-4591,340 Ridge Ln,Spokane,WA,59644,Conventional,7.534%,"$411,528",$2918.56,"$571,000",7/25/2025,360,622,"$32,000",$928,Dave Maxwell,Past client
+L10153,Monique,Green,monique.green@example.com,(566) 555-5381,7890 Park Ln,Nashville,TN,77767,FHA,5.733%,"$402,549",$2481.35,"$504,000",10/7/2022,360,742,"$25,000",$688,Jordan Reyes,Past client
+L10154,MONIQUE,RODRIGUEZ,monique.rodriguez@example.com,(613) 555-9939,1755 Meadow Dr,Atlanta,GA,25477,Conventional,6.634%,"$441,100",$2877.53,"$551,000",2/10/2025,360,813,,,,Referral
+L10155,Kevin,Jackson,kevin.jackson@example.com,(879) 555-4707,2069 Hillcrest Ave,Fresno,CA,27646,FHA 30 Year,3.594%,"$163,660",$872.31,"$217,000",9/12/2019,360,735,"$40,000",$1001,Dave Maxwell,Past client
+L10156,Jennifer,Williams,jennifer.williams@example.com,(736) 555-3557,4278 Hillcrest Ct,San Antonio,TX,42178,FHA,6.960%,"$212,969",$1457.76,"$298,000",10/7/2023,360,705,,,,Referral
+L10157,Heather,Thompson,heather.thompson@example.com,(391) 555-2249,3241 Oak Ct,Seattle,WA,40230,FHA 30 Year,3.293%,"$311,440",$1584.06,"$390,000",4/13/2020,360,623,"$39,000",$979,Sarah Kim,Web inquiry
+L10158,Keisha,Garcia,keisha.garcia@example.com,(435) 555-9274,1145 Ridge Ct,Sacramento,CA,29857,VA,5.589%,"$230,035",$1416.26,"$257,000",1/7/2022,360,799,"$21,000",$544,Sarah Kim,Past client
+L10159,Keisha,Young,keisha.young@example.com,(928) 555-8521,8143 Ridge Ave,Denver,CO,74908,FHA,3.465%,"$340,008",$1721.30,"$553,000",2/13/2021,360,721,,,Sarah Kim,Referral
+L10160,Marcus,White,marcus.white160@example.com,(750) 555-9161,4196 Washington Ave,Birmingham,AL,18564,VA,3.744%,"$160,458",$870.02,"$221,000",8/9/2019,360,654,,,Dave Maxwell,Past client
+L10161,Nicole,Rodriguez,nicole.rodriguez@example.com,(252) 555-1801,1228 Lakeview Ct,Columbia,SC,69256,FHA,6.891%,"$421,581",$2829.33,"$473,000",11/26/2024,360,670,,,Jordan Reyes,Past client
+L10162,Robert,Williams,robert.williams162@example.com,(219) 555-4213,9708 Lakeview Ln,Baltimore,MD,91779,FHA,7.838%,"$462,476",$3453.53,"$506,000",4/3/2023,360,725,"$16,000",$559,Jordan Reyes,Referral
+L10163,William,Garcia,william.garcia@example.com,(476) 555-4647,7572 Oak St,Newark,NJ,90313,Conv 30yr,6.596%,"$392,573",$2591.86,"$558,000",11/9/2023,360,630,"$21,000",$717,Sarah Kim,Past client
+L10164,Marcus,Thompson,marcus.thompson@example.com,(601) 555-9885,6494 Washington Ave,Birmingham,AL,37076,Conventional,3.324%,"$283,333",$1410.05,"$355,000",3/12/2021,360,717,"$25,000",$824,,Referral
+L10165,MONIQUE,WILLIAMS,monique.williams@example.com,(349) 555-2444,7065 Pine Dr,Columbia,SC,26271,Conventional,4.146%,"$164,253",$918.34,"$196,000",12/18/2019,360,731,"$12,000",$395,Jordan Reyes,Web inquiry
+L10166,Linda,Baker,linda.baker@example.com,(555) 555-9154,6505 Park St,Phoenix,AZ,76298,FHA,6.314%,"$449,615",$2944.43,"$569,000",7/1/2022,360,773,"$33,000",$863,Jordan Reyes,Purchased list
+L10167,Tyrone,Lewis,tyrone.lewis@example.com,(561) 555-9599,5634 Hillcrest Ct,Phoenix,AZ,94926,Conventional,3.498%,"$154,756",$781.12,"$192,000",5/22/2021,360,801,"$16,000",$471,Sarah Kim,Past client
+L10168,Tyrone,Rodriguez,tyrone.rodriguez@example.com,(551) 555-9666,4512 Ridge Dr,Atlanta,GA,60891,Conventional,3.540%,"$268,483",$1358.31,"$345,000",6/22/2021,360,664,"$41,000",$1360,Dave Maxwell,Past client
+L10169,Patricia,Harris,patricia.harris@example.com,(281) 555-6798,7961 Meadow Ave,Raleigh,NC,39173,FHA,3.024%,"$174,623",$892.32,"$262,000",3/3/2019,360,705,"$48,000",$1336,Dave Maxwell,Purchased list
+L10170,Samantha,Anderson,samantha.anderson@example.com,(974) 555-3684,7359 Washington St,Ann Arbor,MI,31980,FHA,6.965%,"$254,176",$1763.51,"$315,000",10/21/2022,360,630,,,Dave Maxwell,Web inquiry
+L10171,Carlos,Green,carlos.green@example.com,(872) 555-3138,409 Pine Ln,Orlando,FL,62559,FHA,7.565%,"$190,127",$1372.18,"$245,000",2/7/2024,360,636,,,Sarah Kim,Past client
+L10172,Patricia,Clark,patricia.clark@example.com,(635) 555-1702,8708 Ridge Ct,Sacramento,CA,34078,VA,3.906%,"$297,323",$1656.72,"$416,000",3/17/2019,360,789,,,Sarah Kim,Purchased list
+L10173,Jennifer,Brown,jennifer.brown@example.com,(744) 555-8123,9005 Maple St,Fresno,CA,88120,FHA,2.989%,"$266,985",$1338.75,"$380,000",9/22/2019,360,779,,,Jordan Reyes,Web inquiry
+L10174,Aisha,Young,aisha.young@example.com,(821) 555-1848,7539 Maple Ave,Newark,NJ,49083,FHA 30 Year,7.568%,"$356,369",$2547.96,"$497,000",1/17/2025,360,705,,,Dave Maxwell,Referral
+L10175,Linda,Young,linda.young@example.com,(410) 555-5061,6765 Ridge Dr,Sacramento,CA,55981,FHA 30 Year,5.560%,"$410,457",$2497.66,"$461,000",7/22/2022,360,679,,,Sarah Kim,Referral
+L10176,KEISHA,WHITE,keisha.white@example.com,(692) 555-6655,9708 Park St,Raleigh,NC,54747,Conventional,3.088%,"$423,803",$2136.21,"$776,000",11/14/2019,360,766,,,Jordan Reyes,Web inquiry
+L10177,Tanya,Jones,tanya.jones@example.com,(406) 555-5189,2420 Park Dr,Charlotte,NC,54002,FHA 30 Year,7.455%,"$407,836",$2868.08,"$546,000",8/8/2025,360,634,,,,Past client
+L10178,Nicole,Davis,nicole.davis@example.com,(721) 555-6952,736 Washington St,Atlanta,GA,72469,Conv 30yr,5.571%,"$463,503",$2815.51,"$528,000",9/1/2022,360,654,"$5,000",$158,Jordan Reyes,Purchased list
+L10179,Jason,Johnson,jason.johnson@example.com,(478) 555-9171,4072 Oak Ln,Detroit,MI,63433,FHA,7.821%,"$304,335",$2265.00,"$333,000",6/16/2023,360,796,"$55,000",$1784,Dave Maxwell,Referral
+L10180,Anthony,Baker,anthony.baker@example.com,(494) 555-6955,8595 Pine Ave,Raleigh,NC,97594,FHA,6.669%,"$501,927",$3254.86,"$585,000",12/26/2025,360,792,,,Dave Maxwell,Referral
+L10181,Kevin,Jones,kevin.jones@example.com,(931) 555-4550,6185 Park Ln,Houston,TX,63737,Conventional,6.392%,"$196,579",$1293.68,"$217,000",9/7/2022,360,632,"$32,000",$1010,Dave Maxwell,Purchased list
+L10182,Carlos,Miller,carlos.miller@example.com,(338) 555-4447,7191 Maple Dr,Dallas,TX,52429,Conv 30yr,3.625%,"$242,207",$1249.57,"$403,000",1/13/2021,360,775,"$20,000",$699,Jordan Reyes,Past client
+L10183,Luis,Hall,luis.hall@example.com,(224) 555-7040,6403 Hillcrest St,Jacksonville,FL,15984,FHA,2.641%,"$268,722",$1227.59,"$449,000",8/16/2021,360,668,,,Dave Maxwell,Web inquiry
+L10184,Maria,Clark,maria.clark@example.com,(707) 555-2885,6740 Oak Ct,Houston,TX,17407,FHA,7.526%,"$420,347",$3028.25,"$619,000",12/10/2023,360,808,"$12,000",$411,Dave Maxwell,Past client
+L10185,Tanya,Martin,tanya.martin@example.com,(437) 555-8231,6583 Washington St,Savannah,GA,87828,Conventional,6.652%,"$473,559",$3171.91,"$668,000",3/6/2023,360,634,,,Dave Maxwell,Referral
+L10186,Eric,Thomas,eric.thomas@example.com,(743) 555-4541,5815 Park Ln,Columbus,OH,88227,FHA,2.676%,"$451,505",$2090.41,"$638,000",4/18/2021,360,797,"$51,000",$1471,Sarah Kim,Past client
+L10187,LATOYA,ROBINSON,latoya.robinson@example.com,(381) 555-4985,5085 Ridge St,Phoenix,AZ,53645,Conventional,7.708%,"$201,462",$1484.13,"$270,000",6/20/2023,360,700,,,,Web inquiry
+L10188,William,Anderson,william.anderson@example.com,(568) 555-6639,2445 Sunset St,Charlotte,NC,85680,Conventional,3.279%,"$220,848",$1113.82,"$317,000",7/3/2020,360,756,"$32,000",$816,Dave Maxwell,Past client
+L10189,Michael,Miller,michael.miller@example.com,(495) 555-6915,7005 Pine St,Spokane,WA,10922,FHA 30 Year,3.421%,"$210,340",$1107.17,"$281,000",7/9/2019,360,667,"$13,000",$407,Dave Maxwell,Referral
+L10190,Angela,Green,angela.green190@example.com,(644) 555-9945,2642 Elm Ln,Fresno,CA,11597,Conventional,8.025%,"$344,297",$2567.02,"$445,000",2/10/2025,360,813,,,Jordan Reyes,Web inquiry
+L10191,Rachel,Robinson,rachel.robinson@example.com,(912) 555-7713,1159 Pine Ave,Jacksonville,FL,57286,FHA,6.551%,"$243,743",$1607.60,"$347,000",8/17/2023,360,645,"$9,000",$299,,Past client
+L10192,Tanya,King,tanya.king@example.com,(933) 555-4188,3079 Hillcrest Dr,Grand Rapids,MI,49622,Conventional,3.998%,"$222,987",$1198.00,"$265,000",12/10/2020,360,612,"$14,000",$424,Dave Maxwell,Past client
+L10193,James,Adams,james.adams193@example.com,(771) 555-6790,6596 Hillcrest Ave,Nashville,TN,70577,FHA,7.494%,"$415,251",$2955.81,"$645,000",10/19/2024,360,800,"$32,000",$877,Dave Maxwell,Referral
+L10194,Marcus,King,marcus.king@example.com,(217) 555-5217,6134 Maple Ln,Cleveland,OH,25499,FHA,4.094%,"$325,075",$1767.13,"$380,000",11/14/2020,360,634,"$49,000",$1598,Dave Maxwell,Web inquiry
+L10195,Keisha,Jones,keisha.jones@example.com,(458) 555-4565,6310 Meadow St,Atlanta,GA,53403,Conventional,6.612%,"$154,293",$997.52,"$183,000",9/14/2025,360,678,"$47,000",$1472,Dave Maxwell,Purchased list
+L10196,Eric,Thomas,eric.thomas196@example.com,(534) 555-8606,1292 Pine St,Nashville,TN,41595,FHA,4.875%,"$153,956",$878.47,"$174,000",4/8/2022,360,797,"$34,000",$917,Dave Maxwell,Web inquiry
+L10197,Maria,Anderson,maria.anderson197@example.com,(622) 555-1857,241 Sunset Dr,Birmingham,AL,41323,FHA 30 Year,3.396%,"$144,461",$735.79,"$192,000",8/14/2020,360,761,,,Dave Maxwell,Purchased list
+L10198,HEATHER,WHITE,heather.white@example.com,(734) 555-9068,766 Cedar Ln,Nashville,TN,70382,FHA,3.304%,"$302,196",$1494.17,"$508,000",5/7/2021,360,628,"$24,000",$828,Sarah Kim,Past client
+L10199,William,Wright,william.wright@example.com,(357) 555-3053,8384 Lakeview Ln,Birmingham,AL,76605,Conventional,3.585%,"$194,546",$1048.31,"$338,000",4/12/2019,360,749,,,Jordan Reyes,Past client
+L10200,David,Jackson,david.jackson@example.com,(977) 555-5485,6880 Oak Ave,Cleveland,OH,57580,Conv 30yr,4.190%,"$370,654",$2085.65,"$448,000",11/14/2019,360,774,,,Jordan Reyes,Web inquiry
+L10201,James,Harris,james.harris@example.com,(924) 555-7718,6582 Maple St,Ann Arbor,MI,38776,FHA,4.084%,"$316,774",$1716.85,"$500,000",12/27/2020,360,633,"$13,000",$357,,Purchased list
+L10202,James,Johnson,james.johnson@example.com,(869) 555-2882,7580 Pine Ave,Spokane,WA,23248,Conventional,3.367%,"$324,431",$1594.34,"$542,000",11/1/2021,360,710,"$19,000",$625,,Referral
+L10203,William,Miller,william.miller203@example.com,(361) 555-6166,5901 Lakeview Ct,Memphis,TN,38222,Conventional,3.892%,"$422,712",$2294.83,"$591,000",2/15/2020,360,697,,,,Past client
+L10204,Jason,Thompson,jason.thompson@example.com,(741) 555-8356,7397 Pine Ln,Birmingham,AL,25264,FHA,7.992%,"$247,210",$1847.64,"$308,000",7/18/2024,360,775,"$24,000",$668,Sarah Kim,Past client
+L10205,Luis,Clark,luis.clark@example.com,(233) 555-7144,7022 Lakeview Dr,Cleveland,OH,25459,Conventional,3.759%,"$232,746",$1233.24,"$307,000",7/1/2020,360,731,"$50,000",$1293,Dave Maxwell,Past client
+L10206,Eric,Jones,eric.jones@example.com,(881) 555-5748,3684 Hillcrest Ave,Newark,NJ,83090,VA,4.052%,"$228,086",$1234.73,"$381,000",11/11/2020,360,670,,,Sarah Kim,Past client
+L10207,Tyrone,Green,tyrone.green@example.com,(540) 555-3141,6620 Lakeview Ct,Raleigh,NC,75717,FHA 30 Year,7.979%,"$171,804",$1281.51,"$190,000",8/13/2024,360,750,"$48,000",$1383,Dave Maxwell,Past client
+L10208,Jason,Davis,jason.davis@example.com,(795) 555-9700,6338 Ridge Dr,Detroit,MI,12093,Conventional,7.027%,"$307,622",$2114.85,"$372,000",12/27/2023,360,683,,,Dave Maxwell,Past client
+L10209,LATOYA,WILSON,latoya.wilson@example.com,(268) 555-6244,9775 Maple Ct,Seattle,WA,69615,Conventional,7.880%,"$241,279",$1762.73,"$287,000",11/1/2025,360,708,"$50,000",$1348,,Referral
+L10210,Brian,Martinez,brian.martinez@example.com,(366) 555-4629,5382 Maple St,Tucson,AZ,48109,FHA,6.634%,"$305,922",$1980.38,"$453,000",10/22/2025,360,657,"$18,000",$592,,Past client
+L10211,Nicole,Nelson,nicole.nelson@example.com,(627) 555-2951,4756 Sunset Ct,Fresno,CA,79002,FHA,7.705%,"$345,538",$2496.61,"$436,000",4/27/2025,360,722,"$9,000",$238,Dave Maxwell,Referral
+L10212,Angela,Miller,angela.miller@example.com,(644) 555-1817,5579 Lakeview Dr,Indianapolis,IN,53821,Conventional,3.033%,"$332,405",$1630.00,"$589,000",8/17/2020,360,641,"$56,000",$1953,Jordan Reyes,Past client
+L10213,Linda,Thomas,linda.thomas@example.com,(816) 555-5833,1845 Lakeview Ave,Chicago,IL,79393,FHA 30 Year,7.841%,"$281,780",$2066.95,"$403,000",1/25/2025,360,652,,,Sarah Kim,Referral
+L10214,Kevin,Walker,kevin.walker@example.com,(340) 555-8958,6373 Maple Ct,Dallas,TX,11127,FHA 30 Year,7.197%,"$332,520",$2320.78,"$473,000",1/16/2024,360,768,,,Dave Maxwell,Purchased list
+L10215,Tyrone,Thomas,tyrone.thomas@example.com,(256) 555-5709,7136 Sunset Ave,Houston,TX,68939,Conv 30yr,3.912%,"$293,585",$1563.55,"$421,000",12/20/2020,360,801,,,,Purchased list
+L10216,Derek,Martin,derek.martin@example.com,(514) 555-2749,7672 Washington Dr,Orlando,FL,22627,VA,7.011%,"$248,359",$1738.31,"$380,000",6/2/2022,360,719,,,,Purchased list
+L10217,Luis,Clark,luis.clark217@example.com,(806) 555-1272,2110 Ridge St,Columbia,SC,15382,FHA,7.002%,"$458,771",$3227.53,"$502,000",1/7/2022,360,728,"$24,000",$790,Sarah Kim,Past client
+L10218,Marcus,Harris,marcus.harris@example.com,(346) 555-1303,441 Hillcrest Ln,Jacksonville,FL,57230,Conv 30yr,3.591%,"$332,807",$1752.98,"$503,000",2/2/2020,360,631,"$42,000",$1089,Dave Maxwell,Web inquiry
+L10219,Jennifer,Clark,jennifer.clark219@example.com,(824) 555-8998,1996 Washington St,Sacramento,CA,13208,Conventional,2.735%,"$177,960",$843.47,"$302,000",9/4/2020,360,659,,,Jordan Reyes,Purchased list
+L10220,BRIAN,WILSON,brian.wilson220@example.com,(898) 555-1289,4346 Pine Ln,Jacksonville,FL,99231,FHA,6.553%,"$454,867",$2980.68,"$580,000",2/21/2024,360,693,,,Dave Maxwell,Referral
+L10221,William,Johnson,william.johnson@example.com,(733) 555-5153,9190 Maple Ln,Ann Arbor,MI,19186,FHA,6.914%,"$263,085",$1787.28,"$349,000",1/15/2024,360,679,"$7,000",$189,Dave Maxwell,Web inquiry
+L10222,Robert,Clark,robert.clark@example.com,(838) 555-1497,7936 Meadow St,Columbia,SC,68587,Conv 30yr,3.225%,"$144,297",$702.77,"$203,000",8/26/2021,360,738,,,Jordan Reyes,Purchased list
+L10223,Keisha,Martinez,keisha.martinez@example.com,(445) 555-7065,7750 Meadow Dr,Ann Arbor,MI,66171,VA,2.934%,"$341,049",$1647.05,"$484,000",10/21/2020,360,730,"$25,000",$725,,Past client
+L10224,Latoya,Johnson,latoya.johnson224@example.com,(659) 555-4595,6080 Hillcrest Dr,Tucson,AZ,11299,FHA,3.895%,"$315,420",$1673.41,"$477,000",1/17/2021,360,611,"$13,000",$443,,Past client
+L10225,Marcus,Baker,marcus.baker@example.com,(972) 555-4911,429 Lakeview Dr,Chicago,IL,91910,Conventional,7.716%,"$264,182",$1935.17,"$360,000",1/12/2024,360,626,"$25,000",$634,Sarah Kim,Web inquiry
+L10226,Patricia,Brown,patricia.brown@example.com,(567) 555-1555,8929 Park St,Grand Rapids,MI,50917,Conventional,7.611%,"$277,111",$2021.44,"$365,000",7/6/2023,360,770,"$56,000",$1733,Jordan Reyes,Referral
+L10227,Elizabeth,Walker,elizabeth.walker@example.com,(494) 555-4379,9479 Sunset St,Phoenix,AZ,42852,Conventional,7.072%,"$404,042",$2828.10,"$648,000",11/5/2022,360,778,"$5,000",$173,Dave Maxwell,Past client
+L10228,Jason,King,jason.king@example.com,(772) 555-8917,9377 Maple Dr,Indianapolis,IN,59284,FHA,7.595%,"$215,206",$1531.38,"$244,000",10/20/2025,360,735,,,Sarah Kim,Web inquiry
+L10229,William,Adams,william.adams@example.com,(230) 555-8763,1534 Oak Ct,Memphis,TN,41923,Conventional,4.117%,"$431,873",$2362.90,"$656,000",9/15/2020,360,714,"$5,000",$160,Sarah Kim,Past client
+L10230,Keisha,Jackson,keisha.jackson@example.com,(595) 555-3807,2901 Elm Ln,Seattle,WA,97612,Conv 30yr,5.964%,"$443,933",$2806.91,"$683,000",8/11/2022,360,670,"$29,000",$784,Dave Maxwell,Purchased list
+L10231,BRIAN,LEWIS,brian.lewis@example.com,(736) 555-6971,852 Elm Ct,Dallas,TX,76930,Conventional,3.613%,"$213,009",$1083.76,"$277,000",7/3/2021,360,691,,,Dave Maxwell,Referral
+L10232,Linda,Clark,linda.clark232@example.com,(549) 555-3148,1051 Pine Ct,Grand Rapids,MI,78076,Conventional,5.036%,"$239,960",$1374.55,"$370,000",12/27/2022,360,747,"$29,000",$727,Dave Maxwell,Web inquiry
+L10233,James,Adams,james.adams233@example.com,(279) 555-4902,3801 Cedar Ln,Ann Arbor,MI,33062,FHA,2.670%,"$354,634",$1753.38,"$490,000",2/23/2019,360,650,"$16,000",$420,Dave Maxwell,Past client
+L10234,Anthony,Robinson,anthony.robinson@example.com,(940) 555-2104,3612 Maple Ct,Indianapolis,IN,35503,Conv 30yr,6.082%,"$477,819",$3072.61,"$623,000",4/19/2022,360,758,,,,Purchased list
+L10235,Kevin,Baker,kevin.baker235@example.com,(340) 555-6788,3477 Oak Ave,Seattle,WA,32828,FHA 30 Year,3.743%,"$405,214",$2077.61,"$554,000",10/6/2021,360,615,,,,Purchased list
+L10236,Anthony,Anderson,anthony.anderson236@example.com,(249) 555-8399,7921 Ridge Ln,Baltimore,MD,51215,Conv 30yr,3.149%,"$275,832",$1409.35,"$337,000",8/24/2019,360,768,,,,Purchased list
+L10237,Patricia,Jones,patricia.jones@example.com,(903) 555-7141,8457 Park Ln,Seattle,WA,68416,FHA,5.856%,"$240,199",$1511.19,"$310,000",4/27/2022,360,653,"$39,000",$1025,Jordan Reyes,Web inquiry
+L10238,Jason,Brown,jason.brown@example.com,(452) 555-3918,1911 Pine Ct,Baltimore,MD,29556,FHA,6.941%,"$359,369",$2440.39,"$396,000",4/3/2024,360,760,"$23,000",$623,Sarah Kim,Past client
+L10239,Rachel,Young,rachel.young@example.com,(924) 555-8725,7382 Sunset Ave,Detroit,MI,70858,Conventional,7.179%,"$425,021",$3014.19,"$679,000",8/5/2022,360,709,"$19,000",$574,Jordan Reyes,Purchased list

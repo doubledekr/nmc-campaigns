@@ -1,0 +1,57 @@
+{
+  "name": "nmc-campaigns",
+  "productName": "NMC Campaigns",
+  "version": "0.1.0",
+  "description": "Neighborhood Mortgage Company — email proposal campaigns",
+  "author": "Neighborhood Mortgage Company",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test --test-timeout=60000",
+    "sample": "node scripts/make-sample.js",
+    "build": "electron-builder --win --mac --publish never",
+    "build:win": "electron-builder --win --publish never",
+    "build:mac": "electron-builder --mac --publish never"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "electron-updater": "^6.3.9",
+    "nodemailer": "^6.9.16"
+  },
+  "build": {
+    "appId": "com.neighborhoodmc.campaigns",
+    "productName": "NMC Campaigns",
+    "copyright": "© Neighborhood Mortgage Company",
+    "directories": { "output": "dist", "buildResources": "build" },
+    "files": ["main.js", "preload.js", "main/**/*", "lib/**/*", "app/**/*", "samples/**/*", "package.json"],
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "icon": "build/icon.png",
+      "artifactName": "NMC-Campaigns-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "NMC Campaigns"
+    },
+    "mac": {
+      "target": [{ "target": "dmg", "arch": ["universal"] }, { "target": "zip", "arch": ["universal"] }],
+      "icon": "build/icon.png",
+      "category": "public.app-category.business",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "artifactName": "NMC-Campaigns-${version}.${ext}"
+    },
+    "publish": { "provider": "github", "owner": "doubledekr", "repo": "nmc-campaigns", "releaseType": "release" }
+  }
+}

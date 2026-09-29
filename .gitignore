@@ -1,0 +1,25 @@
+# dependencies / build output
+node_modules/
+dist/
+
+# client data — never commit (lead exports, send logs, dry-run output)
+*.leads.csv
+data/
+outbox/
+sends/
+leads.json
+campaigns-data.json
+secrets.json
+
+# secrets / signing
+.env
+*.p12
+*.pfx
+*.cer
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

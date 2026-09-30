@@ -29,6 +29,26 @@ Built for one marketing user. Leads, campaigns, and send logs stay on that perso
    Leads that can't be emailed are counted and can be removed. That covers leads in unlicensed states, with invalid addresses, suppressed, or opted out.
 6. **Send.** Send a test to your own inbox first. The main send is paced (per minute, with a daily cap), retries temporary failures, and stops on bad credentials. It never emails anyone twice and resumes where it left off after a pause or a crash. The full log exports to CSV.
 
+## A/B testing
+
+Any campaign can have up to four versions (A–D) of the subject, preview text, copy and button. The proposal is the same in every version, so the test isolates the message.
+
+- **Split everyone evenly.** Each lead is assigned a version at random. The assignment is stable, so a paused or resumed send never switches anyone's version.
+- **Test on a sample, then send the winner.** A sample (for example 20%) is split across the versions and sent. Everyone else is held. After the test group goes out, you enter opens, clicks and replies per version from the email service's report. Every email is tagged `variant-A`, `variant-B`, and so on, so the service can break the numbers out. The app shows each version's rate and says whether the lead is statistically real (95% confidence) or could still be chance. One click then sends the rest with the winner.
+
+Every version is scored in Check, and sending is locked if any version has an error. Test sends go out one per version.
+
+## Watchlist (eligible later)
+
+The Watchlist holds leads who miss an offer *only* because of the rate market or loan seasoning, and re-checks them every time the rate sheet changes.
+
+- **Scan with a preset.** "FHA / VA Streamline" applies a 0.5% rate drop, FHA seasoning of 210 days plus 6 payments, VA seasoning of 210 days after the first payment plus 6 payments, and VA's 36-month cost recoupment. You can also scan with any campaign's offer. The Offer step has a one-click "Add N near-misses to the watchlist".
+- **For each lead, the app solves the rate they'd qualify at**, for example "≤ 5.25%". It shows today's rate, the gap and the seasoning date. Leads blocked for other reasons (LTV, missing data, unlicensed state, opted out) aren't added.
+- **When a rate update makes leads eligible,** the sidebar shows "N ready" and a notice pops up. "Create campaign from ready" builds a campaign with the same offer and "rates finally moved" copy, and marks those leads as in a campaign.
+- **"If rates drop…"** shows how many watched leads each 0.125%–1% move would free up.
+
+Seasoning dates are estimated from the close date in the lead file (the first payment is assumed on the 1st of the second month after closing).
+
 ## Email services
 
 Sending goes through a small adapter per service in `main/providers/`. The rest of the app doesn't know or care which one is in use, and switching services is a setting.
@@ -66,6 +86,8 @@ lib/                     shared by the app window, the queue and the tests
   merge.js               merge fields
   deliverability.js      scoring + compliance checks + lead blocks
   filters.js campaign.js audience filters; per-lead assembly (sender, block, message)
+  abtest.js              A/B versions, stable split, results statistics
+  watchlist.js           near-miss detection, qualifying-rate solver, re-checks
 app/                     the interface
 test/                    node --test suites
 ```

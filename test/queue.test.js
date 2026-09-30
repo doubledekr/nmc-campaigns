@@ -85,3 +85,17 @@ test("recover: a campaign left running comes back paused", () => {
   fs.writeFileSync(path.join(dir, "sends", "camp1.json"), JSON.stringify({ campaignId: "camp1", status: "running", items: { "id:L1": { status: "queued", attempts: 0 } } }));
   q.recover(); assert.equal(q.load("camp1").status, "paused");
 });
+
+test("A/B test-then-winner: test group sends, rest held, winner releases the rest", async () => {
+  const { q, state } = setup("fake");
+  const leads = Array.from({ length: 20 }, (_, i) => lead(100 + i));
+  q.o.loadLeads = () => leads;
+  const c = state.campaigns[0]; c.selected = leads.map(l => "id:" + l.leadId);
+  c.variants = [{ id: "A", name: "A", subject: "Hi {{first_name}}", body: "x" }, { id: "B", name: "B", subject: "Hello {{first_name}}", body: "x" }];
+  c.ab = { on: true, mode: "winner", testPct: 20, results: {} };
+  q.start("camp1"); const st = await done(q);
+  assert.equal(st.status, "testdone"); assert.equal(st.counts.sent, 4); assert.equal(st.counts.held, 16); assert.deepEqual(st.counts.byVariant, { A: 2, B: 2 });
+  assert.throws(() => q.start("camp1"), /pick a winner/);
+  q.sendRemainder("camp1", "B"); const st2 = await done(q);
+  assert.equal(st2.status, "done"); assert.equal(st2.counts.sent, 20); assert.deepEqual(st2.counts.byVariant, { A: 2, B: 18 }); assert.equal(st2.winner, "B");
+});

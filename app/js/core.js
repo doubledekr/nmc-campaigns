@@ -20,7 +20,7 @@
     from: { fromEmail: "", fromNameTpl: "{{banker_name}} | Neighborhood Mortgage", replyToMode: "banker", replyTo: "", listUnsubMailto: "", oneClick: false, ratePerMinute: 30, dailyCap: 500, authConfirmed: false, warmedUp: false, testTo: "" },
     unsubscribeUrl: "",
   });
-  App.newCampaign = (name) => ({
+  App.newCampaign = (name) => N.ab.ensure({
     id: "c" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), name: name || "Untitled campaign", created: new Date().toISOString(),
     offer: JSON.parse(JSON.stringify(N.loanmath.DEFAULT_OFFER)), filters: JSON.parse(JSON.stringify(N.filters.EMPTY)), selected: [],
     subject: "{{first_name}}, your payment could drop by {{monthly_savings}}",
@@ -36,8 +36,8 @@
   App.load = async function () {
     let raw = null; try { raw = desktop ? window.nmc.readData() : localStorage.getItem(LS_STATE); } catch (e) {}
     let s = {}; try { s = raw ? JSON.parse(raw) : {}; } catch (e) { s = {}; }
-    App.S = { settings: deepMerge(App.defaultSettings(), s.settings || {}), campaigns: s.campaigns || [], suppression: s.suppression || [], presets: s.presets || [], ui: s.ui || { screen: "leads" } };
-    for (const c of App.S.campaigns) { c.offer = deepMerge(N.loanmath.DEFAULT_OFFER, c.offer || {}); c.filters = Object.assign({}, N.filters.EMPTY, c.filters || {}); c.sections = Object.assign({}, N.emailtpl.DEFAULT_SECTIONS, c.sections || {}); c.selected = c.selected || []; }
+    App.S = { settings: deepMerge(App.defaultSettings(), s.settings || {}), campaigns: s.campaigns || [], suppression: s.suppression || [], presets: s.presets || [], watchlist: s.watchlist || [], ui: s.ui || { screen: "leads" } };
+    for (const c of App.S.campaigns) { N.ab.ensure(c); c.offer = deepMerge(N.loanmath.DEFAULT_OFFER, c.offer || {}); c.filters = Object.assign({}, N.filters.EMPTY, c.filters || {}); c.sections = Object.assign({}, N.emailtpl.DEFAULT_SECTIONS, c.sections || {}); c.selected = c.selected || []; }
     let lraw = null; try { lraw = desktop ? await window.nmc.readLeads() : localStorage.getItem(LS_LEADS); } catch (e) {}
     let L = {}; try { L = lraw ? JSON.parse(lraw) : {}; } catch (e) {}
     App.L = { imports: L.imports || [], leads: L.leads || [] };
@@ -68,6 +68,25 @@
     return m;
   };
   App.cur = () => App.S.campaigns.find(c => c.id === App.S.ui.campaignId) || null;
+
+  /* ---------- watchlist evaluation (re-run whenever rates, leads, suppression or licensing change) ---------- */
+  let wCache = null;
+  App.watchRows = function () {
+    const s = App.S.settings, today = N.loanmath.todayISO();
+    const sig = JSON.stringify([s.rates, s.licensedStates, s.senderMode, App.S.suppression.length, App.L.leads.length, App.S.watchlist.length, App.S.watchlist.map(e => e.status + e.campaignId).join(), today]);
+    if (wCache && wCache.sig === sig) return wCache.rows;
+    const suppressed = new Set(App.S.suppression.map(e => String(e).toLowerCase()));
+    const camps = new Set(App.S.campaigns.map(c => c.id));
+    const rows = App.S.watchlist.filter(e => e.status !== "removed").map(e => {
+      if (e.status === "campaign" && !camps.has(e.campaignId)) { e.status = "watching"; e.campaignId = null; }   /* its campaign was deleted: back on watch */
+      const lead = App.byKey.get(e.key);
+      const ev = N.watchlist.evaluate(e, lead, s.rates, today);
+      const block = lead ? N.campaign.prepare(lead, { id: "watch", offer: e.offer, subject: "", body: "" }, App.S, { suppressed }).block : "";
+      if (ev.status === "ready" && !e.readyAt) e.readyAt = new Date().toISOString();
+      return { e, lead, ev, block, ready: ev.status === "ready" && !block && e.status === "watching" };
+    });
+    wCache = { sig, rows }; return rows;
+  };
 
   /* ---------- helpers ---------- */
   App.$ = id => document.getElementById(id);
@@ -102,10 +121,14 @@
   App.renderSide = function () {
     const ui = App.S.ui, e = App.esc;
     const camps = App.S.campaigns.slice().sort((a, b) => (b.created || "").localeCompare(a.created || ""));
+    const wrows = App.watchRows(); const readyN = wrows.filter(r => r.ready).length; const watchN = wrows.filter(r => r.e.status === "watching").length;
+    if (App._readyN != null && readyN > App._readyN) { App.save(); setTimeout(() => App.toast("Rates moved: " + App.plural(readyN - App._readyN, "watchlist lead") + " just became eligible", 6000), 50); }
+    App._readyN = readyN;
     App.$("side").innerHTML = `
       <div class="wordmark"><div class="co">Neighborhood Mortgage</div><div class="sub">Campaigns</div></div>
       <button class="nav ${ui.screen === "leads" ? "on" : ""}" data-go="leads">Leads <span class="n">${App.L.leads.length.toLocaleString()}</span></button>
       <button class="nav ${ui.screen === "campaigns" ? "on" : ""}" data-go="campaigns">Campaigns <span class="n">${camps.length}</span></button>
+      <button class="nav ${ui.screen === "watchlist" ? "on" : ""}" data-go="watchlist">Watchlist ${readyN ? `<span class="n" style="background:var(--good);color:#fff">${readyN} ready</span>` : `<span class="n">${watchN.toLocaleString()}</span>`}</button>
       ${camps.length ? `<div class="navgroup">Recent</div>` + camps.slice(0, 8).map(c => `<button class="nav navcamp ${ui.screen === "campaign" && ui.campaignId === c.id ? "on" : ""}" data-camp="${c.id}"><span class="dot ${c.sendState || ""}"></span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e(c.name)}</span></button>`).join("") : ""}
       <div class="grow"></div>
       <button class="nav ${ui.screen === "settings" ? "on" : ""}" data-go="settings">Settings</button>

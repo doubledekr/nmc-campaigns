@@ -99,7 +99,8 @@ ipcMain.handle("send:pause", wrap(() => queue.pause("Paused")));
 ipcMain.handle("send:cancel", wrap(id => queue.cancel(id)));
 ipcMain.handle("send:status", wrap(id => queue.status(id)));
 ipcMain.handle("send:log", wrap(id => queue.log(id)));
-ipcMain.handle("send:test", wrap((id, key, to) => queue.testSend(id, key, to)));
+ipcMain.handle("send:test", wrap((id, key, to, variant) => queue.testSend(id, key, to, variant)));
+ipcMain.handle("send:remainder", wrap((id, winner) => queue.sendRemainder(id, winner)));
 
 /* ---- updates from GitHub Releases (same mechanism as the NMC Toolkit) ---- */
 const RELEASES_URL = "https://github.com/doubledekr/nmc-campaigns/releases/latest";

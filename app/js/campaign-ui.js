@@ -16,7 +16,7 @@
     el.innerHTML = `<div class="screen"><div class="head"><div><h1>Campaigns</h1><div class="lede">Each campaign is an audience, an offer, and a message. Every lead gets their own proposal inside the email.</div></div>
       <div class="actions"><button class="btn primary" id="newc">New campaign</button></div></div>
       ${cs.length ? `<div class="tablewrap"><table class="data"><thead><tr><th>Campaign</th><th>Offer</th><th class="num">Selected</th><th>Status</th><th>Created</th><th></th></tr></thead><tbody>
-      ${cs.map(c => `<tr><td><a href="#" data-open="${c.id}"><b>${esc(c.name)}</b></a></td><td>${esc(PRODUCTS[c.offer.product].t)} · ${c.offer.term} yr</td><td class="num">${c.selected.length.toLocaleString()}</td>
+      ${cs.map(c => `<tr><td><a href="#" data-open="${c.id}"><b>${esc(c.name)}</b></a></td><td>${esc(PRODUCTS[c.offer.product].t)} · ${c.offer.term} yr${c.ab.on && c.variants.length > 1 ? ' <span class="tag info">A/B</span>' : ""}</td><td class="num">${c.selected.length.toLocaleString()}</td>
         <td>${statusTag(c)}</td><td class="small muted">${new Date(c.created).toLocaleDateString()}</td>
         <td class="num"><button class="btn sm" data-open="${c.id}">Open</button> <button class="btn sm ghost" data-dup="${c.id}">Duplicate</button> <button class="btn sm ghost" data-del="${c.id}">Delete</button></td></tr>`).join("")}
       </tbody></table></div>` : `<div class="panel empty"><h2>No campaigns yet</h2><div>${App.L.leads.length ? "Start one — you’ll pick the audience from your " + App.plural(App.L.leads.length, "lead") + "." : "Import leads first, then create a campaign."}</div><button class="btn primary" id="newc2">New campaign</button></div>`}</div>`;
@@ -24,7 +24,8 @@
     $("newc").onclick = create; if ($("newc2")) $("newc2").onclick = create;
     el.querySelectorAll("[data-open]").forEach(b => b.onclick = e => { e.preventDefault(); App.go("campaign", { campaignId: b.dataset.open }); });
     el.querySelectorAll("[data-dup]").forEach(b => b.onclick = () => { const src = App.S.campaigns.find(c => c.id === b.dataset.dup); const c = JSON.parse(JSON.stringify(src));
-      Object.assign(c, { id: App.newCampaign().id, name: src.name + " (copy)", created: new Date().toISOString(), sendState: "", sendCounts: null, step: "audience" }); App.S.campaigns.push(c); App.save(); App.render(); });
+      Object.assign(c, { id: App.newCampaign().id, name: src.name + " (copy)", created: new Date().toISOString(), sendState: "", sendCounts: null, step: "audience" });
+      c.ab = Object.assign({}, c.ab, { winner: null, results: {} }); App.S.campaigns.push(c); App.save(); App.render(); });
     el.querySelectorAll("[data-del]").forEach(b => b.onclick = async () => { const c = App.S.campaigns.find(x => x.id === b.dataset.del);
       if (c.sendState === "sending") { App.toast("Pause and cancel the send first"); return; }
       if (await App.confirm("Delete “" + esc(c.name) + "”?", "<p>The campaign’s settings are removed. Its send log stays in the data folder.</p>", "Delete")) { App.S.campaigns = App.S.campaigns.filter(x => x !== c); App.save(); App.render(); } });
@@ -35,6 +36,7 @@
     if (c.sendState === "paused") return `<span class="tag warn">Paused ${k ? k.sent + "/" + k.total : ""}</span>`;
     if (c.sendState === "done") return c.sendDry ? `<span class="tag no">Dry run done</span>` : `<span class="tag info">Sent ${k ? k.sent.toLocaleString() : ""}</span>`;
     if (c.sendState === "cancelled") return `<span class="tag no">Cancelled</span>`;
+    if (c.sendState === "testdone") return `<span class="tag warn">A/B test sent \u00b7 pick winner</span>`;
     return `<span class="tag no">Draft</span>`;
   }
 
@@ -151,6 +153,7 @@
     const ok = res.filter(a => a.ok);
     const reasons = {}; res.filter(a => !a.ok).forEach(a => { const r = (a.reasons[0] || "").replace(/-?\$[\d,]+|-?[\d.]+%?/g, "#").replace(/\(needs #\)|\(max #\)|\(min #\)/, "").replace(/#/g, "…").trim(); reasons[r] = (reasons[r] || 0) + 1; });
     const rs = Object.entries(reasons).sort((a, b) => b[1] - a[1]).slice(0, 6); const maxR = rs.length ? rs[0][1] : 1;
+    const near = aud.filter((l, i) => !res[i].ok && res[i].reasons.length && res[i].reasons.every(r => N.watchlist.kindOf(r) !== "hard"));
     const avg = k => ok.length ? ok.reduce((t, a) => t + (a[k] || 0), 0) / ok.length : null;
     el.innerHTML = `
       <div class="panel"><h2>What are we offering?</h2><div class="hint">Each lead’s proposal is calculated with the Banker Toolkit’s math — same payment, pay-what-you-pay-now, blended rate and APR figures.</div>
@@ -191,8 +194,11 @@
             <div class="stat"><div class="v">${avg("saveMo") != null ? money(avg("saveMo")) : "—"}</div><div class="l">Average savings / mo</div></div>
             <div class="stat"><div class="v">${avg("interestSaved") != null && o.pwypn ? money(avg("interestSaved")) : "—"}</div><div class="l">Avg. interest saved (PWYPN)</div></div></div>
           ${rs.length ? `<div class="small muted" style="margin-bottom:6px">Most common reasons a lead doesn’t qualify</div><div class="bars">${rs.map(([r, n]) => `<div class="b"><div class="track"><div class="fill" style="width:${Math.round(n / maxR * 100)}%"></div><div class="lbl">${esc(r)}</div></div><div class="num small">${n.toLocaleString()}</div></div>`).join("")}</div>` : ""}
+          ${near.length ? `<div class="callout info" style="margin:12px 0 0"><b>${App.plural(near.length, "lead")}</b> miss this offer only because of the rate market or loan seasoning. <button class="btn sm" id="toWatch" style="margin-left:6px">Add to the watchlist</button><div class="tiny" style="margin-top:4px">They\u2019ll be flagged when a rate-sheet update (or the calendar) makes them eligible.</div></div>` : ""}
         </div></div>`;
     const refresh = () => { App.invalidate(); offer(c, el); App.renderSide(); };
+    if ($("toWatch")) $("toWatch").onclick = () => { const r = App.addToWatch(near, o, c.name, "campaign:" + c.id); App.renderSide();
+      App.toast(App.plural(r.added, "lead") + " added to the watchlist" + (r.already ? " \u00b7 " + r.already + " already there" : ""), 4500); };
     App.bind(el, { offer: o, settings: s }, (p) => { if (/rateMode|costsMode/.test(p)) refresh(); else { clearTimeout(offer.t); offer.t = setTimeout(refresh, 450); } });
     el.querySelectorAll("[data-prod]").forEach(b => b.onclick = () => { const k = b.dataset.prod; if (o.product === k) return; o.product = k; const p = PRODUCTS[k]; o.term = p.term; o.costs = p.costs; o.costsMode = "flat"; App.save(); refresh(); });
     el.querySelectorAll("[data-rate]").forEach(i => i.oninput = () => { const [r, t] = i.dataset.rate.split("|"); rt[r] = rt[r] || {}; rt[r][t] = App.num(i.value); App.save(); clearTimeout(offer.t); offer.t = setTimeout(refresh, 600); });
@@ -200,27 +206,40 @@
 
   /* ================= 3. MESSAGE ================= */
   function previewLeads(c) { const sel = new Set(c.selected); const L = App.L.leads.filter(l => sel.has(N.campaign.keyOf(l))); return L.length ? L : [N.campaign.sampleLead(App.L.leads, c, App.S)].filter(Boolean); }
-  function renderFor(c, lead) { return lead ? N.campaign.prepare(lead, c, App.S, { render: true }) : null; }
+  function renderFor(c, lead, vid) { return lead ? N.campaign.prepare(lead, c, App.S, { render: true, variant: vid }) : null; }
+  function curVariant(c) { const ui = App.S.ui; let v = c.variants.find(x => x.id === ui.varId); if (!v) { v = c.variants[0]; ui.varId = v.id; } return v; }
 
   function message(c, el) {
-    const leads = previewLeads(c); const ui = App.S.ui;
+    const leads = previewLeads(c); const ui = App.S.ui; const v = curVariant(c); const ab = c.ab; const multi = c.variants.length > 1;
     let pi = Math.min(ui.prevIdx || 0, Math.max(0, leads.length - 1));
+    const P = App.prep(c); const nOk = c.selected.filter(k => { const p = P.get(k); return p && !p.block && p.analysis.ok; });
+    const plan = multi && ab.on ? N.ab.plan(c, nOk) : null;
     el.innerHTML = `<div class="compose">
       <div>
+        <div class="panel" style="padding:12px 16px">
+          <div class="row" style="gap:6px">${c.variants.map(x => `<button class="chip ${x.id === v.id ? "on" : ""}" data-var="${x.id}">${multi ? "Version " + x.id : "Message"}${x.name && x.name !== x.id ? " \u00b7 " + esc(x.name) : ""}</button>`).join("")}
+            ${N.ab.nextId(c) ? `<button class="chip" id="addVar" title="Copies the version you\u2019re looking at">+ Add ${multi ? "version " + N.ab.nextId(c) : "an A/B version"}</button>` : ""}<span class="spacer"></span>
+            ${multi ? `<input type="text" data-bind="v.name" placeholder="Label, e.g. \u201cSavings-first subject\u201d" style="max-width:230px;min-height:30px;padding:4px 8px;font-size:12.5px">${v.id !== "A" ? `<button class="btn sm ghost" id="delVar">Delete ${v.id}</button>` : ""}` : ""}</div>
+          ${multi ? `<hr class="sep" style="margin:10px 0"><div class="row" style="gap:16px"><label class="check"><input type="checkbox" data-bind="c.ab.on"> <span><b>A/B test this campaign</b></span></label>
+            ${ab.on ? `<select data-bind="c.ab.mode" style="width:auto;min-height:30px;padding:3px 8px"><option value="split">Split everyone evenly</option><option value="winner">Test on a sample, then send the winner</option></select>
+            ${ab.mode === "winner" ? `<label class="f" style="flex-direction:row;align-items:center;gap:6px">Test sample<input type="number" data-bind="c.ab.testPct" min="5" max="50" style="width:70px;min-height:30px;padding:3px 8px">%</label>` : ""}` : `<span class="small muted">Off \u2014 everyone gets version A.</span>`}</div>
+            ${plan ? `<div class="small muted" style="margin-top:8px">${Object.entries(plan.counts).map(([id, n]) => `<b>${id}</b>: ${n.toLocaleString()}`).join(" \u00b7 ")}${plan.held ? ` \u00b7 <b>${plan.held.toLocaleString()}</b> held for the winner` : ""} <span class="faint">(of ${nOk.length.toLocaleString()} sendable, assigned at random)</span></div>` : ""}
+            <div class="tiny faint" style="margin-top:6px">Test one thing at a time (subject line <i>or</i> intro copy <i>or</i> button) so you know what made the difference. Around 100+ per version before trusting a result.</div>` : ""}
+        </div>
         <div class="panel">
-          <label class="f"><span class="row" style="gap:6px">Subject line <span class="counter" id="sc"></span></span><input type="text" id="subj" data-bind="subject"></label>
+          <label class="f"><span class="row" style="gap:6px">Subject line <span class="counter" id="sc"></span></span><input type="text" id="subj" data-bind="v.subject"></label>
           <div class="mini-issues" id="subjIssues"></div>
           <div class="row" style="margin-top:8px"><div class="menu" id="ideas"><button class="btn sm">Subject ideas ▾</button><div class="pop">${(N.deliver.IDEAS[c.offer.product] || []).map(s => `<button data-idea="${esc(s)}">${esc(s)}</button>`).join("")}</div></div>
             <div class="menu" data-ins="subj"><button class="btn sm">Insert field ▾</button><div class="pop"></div></div><span class="small faint">Personal, specific, under 50 characters, no rates.</span></div>
-          <label class="f" style="margin-top:14px"><span class="row" style="gap:6px">Preview text <span class="h">(shown after the subject in the inbox)</span><span class="counter" id="pc"></span></span><input type="text" id="pre" data-bind="preheader"></label>
+          <label class="f" style="margin-top:14px"><span class="row" style="gap:6px">Preview text <span class="h">(shown after the subject in the inbox)</span><span class="counter" id="pc"></span></span><input type="text" id="pre" data-bind="v.preheader"></label>
           <div class="mini-issues" id="preIssues"></div>
         </div>
         <div class="panel">
           <div class="row" style="margin-bottom:6px"><b class="small" style="color:var(--muted)">Email copy</b><span class="h small faint">— appears above the proposal</span><span class="spacer"></span><div class="menu" data-ins="body"><button class="btn sm">Insert field ▾</button><div class="pop"></div></div></div>
-          <textarea id="body" data-bind="body" style="min-height:220px"></textarea>
+          <textarea id="body" data-bind="v.body" style="min-height:220px"></textarea>
           <div class="tiny faint" style="margin-top:4px">Blank line = new paragraph · <span class="kbd">**bold**</span> · <span class="kbd">- </span> starts a bullet · <span class="kbd">[text](https://link)</span> · fallback for empty fields: <span class="kbd">{{first_name|there}}</span></div>
           <div class="mini-issues" id="bodyIssues"></div>
-          <div class="fields" style="margin-top:14px"><label class="f">Button text<input type="text" data-bind="ctaText"></label><label class="f">Button link<input type="text" data-bind="ctaUrl" placeholder="https://… or {{cta_url}}"><span class="h">{{cta_url}} = each sender’s scheduling link (Settings)</span></label></div>
+          <div class="fields" style="margin-top:14px"><label class="f">Button text<input type="text" data-bind="v.ctaText"></label><label class="f">Button link<input type="text" data-bind="v.ctaUrl" placeholder="https://… or {{cta_url}}"><span class="h">{{cta_url}} = each sender’s scheduling link (Settings)</span></label></div>
         </div>
         <div class="panel"><h2 style="font-size:15px">Proposal sections</h2><div class="row" style="margin-top:8px;gap:16px">
           ${[["stats", "Headline numbers"], ["benefits", "What this does for you"], ["table", "Today vs. proposed table"], ["bars", "Payment bars"], ["cta", "Button"], ["signature", "Signature"]].map(([k, t]) => `<label class="check"><input type="checkbox" data-bind="sections.${k}"> ${t}</label>`).join("")}</div></div>
@@ -244,23 +263,27 @@
     ideas.querySelectorAll("[data-idea]").forEach(b => b.onclick = () => { $("subj").value = b.dataset.idea; $("subj").dispatchEvent(new Event("input")); ideas.classList.remove("open"); });
 
     let t = null;
-    App.bind(el, c, () => { clearTimeout(t); t = setTimeout(update, 250); });
+    App.bind(el, { v, c, sections: c.sections }, (p) => { if (/^c\.ab\.(on|mode|testPct)/.test(p)) { clearTimeout(t); t = setTimeout(() => message(c, el), p.endsWith("testPct") ? 500 : 0); return; } clearTimeout(t); t = setTimeout(update, 250); });
+    el.querySelectorAll("[data-var]").forEach(b => b.onclick = () => { ui.varId = b.dataset.var; App.save(); message(c, el); });
+    if ($("addVar")) $("addVar").onclick = () => { const id = N.ab.nextId(c); const nv = Object.assign({}, v, { id, name: id }); c.variants.push(nv); if (c.variants.length === 2) c.ab.on = true; ui.varId = id; App.save(); message(c, el); App.toast("Version " + id + " added \u2014 change the one thing you want to test"); };
+    if ($("delVar")) $("delVar").onclick = async () => { if (!await App.confirm("Delete version " + v.id + "?", "<p>Its subject, preview text and copy are removed.</p>", "Delete")) return;
+      c.variants = c.variants.filter(x => x !== v); if (c.variants.length < 2) c.ab.on = false; delete c.ab.results[v.id]; ui.varId = "A"; App.save(); message(c, el); };
     el.querySelectorAll("[data-pm]").forEach(b => b.onclick = () => { ui.pvMode = b.dataset.pm; App.save(); message(c, el); });
     $("pv").onclick = () => { pi = (pi - 1 + leads.length) % leads.length; ui.prevIdx = pi; update(); };
     $("nx").onclick = () => { pi = (pi + 1) % leads.length; ui.prevIdx = pi; update(); };
 
     function issuesHtml(list) { return list.slice(0, 4).map(i => `<div class="${i.level}">${esc(i.msg)}${i.fix ? ` <span class="faint">— ${esc(i.fix)}</span>` : ""}</div>`).join(""); }
     function update() {
-      const lead = leads[pi]; const p = renderFor(c, lead);
+      const lead = leads[pi]; const p = renderFor(c, lead, v.id);
       const r = p && p.rendered;
-      const subjR = r ? r.subject : c.subject;
+      const subjR = r ? r.subject : v.subject;
       $("sc").textContent = [...subjR].length + " chars"; $("sc").className = "counter" + ([...subjR].length > 55 ? " over" : "");
-      $("pc").textContent = (r ? r.preheader : c.preheader || "").length + " chars";
-      $("subjIssues").innerHTML = issuesHtml(N.deliver.checkSubject(c.subject, subjR));
-      $("preIssues").innerHTML = issuesHtml(N.deliver.checkPreheader(c.preheader, subjR));
-      $("bodyIssues").innerHTML = issuesHtml(N.deliver.checkContent(c.body, null).filter(i => i.level !== "tip"));
+      $("pc").textContent = (r ? r.preheader : v.preheader || "").length + " chars";
+      $("subjIssues").innerHTML = issuesHtml(N.deliver.checkSubject(v.subject, subjR));
+      $("preIssues").innerHTML = issuesHtml(N.deliver.checkPreheader(v.preheader, subjR));
+      $("bodyIssues").innerHTML = issuesHtml(N.deliver.checkContent(v.body, null).filter(i => i.level !== "tip"));
       if (!p) { $("pwho").textContent = "No leads to preview"; return; }
-      $("pwho").innerHTML = `<b>${esc(lead.name)}</b> <span class="faint">${pi + 1} of ${leads.length.toLocaleString()} ${c.selected.length ? "selected" : "(sample — none selected yet)"}</span>`;
+      $("pwho").innerHTML = `${multi ? `<span class="tag info">${v.id}</span> ` : ""}<b>${esc(lead.name)}</b> <span class="faint">${pi + 1} of ${leads.length.toLocaleString()} ${c.selected.length ? "selected" : "(sample — none selected yet)"}</span>`;
       const fromName = p.message.fromName || "(no From name)";
       $("iav").textContent = (fromName.trim()[0] || "N").toUpperCase(); $("ifr").textContent = fromName + (p.message.from ? " <" + p.message.from + ">" : "");
       $("isj").textContent = r.subject || "(no subject)"; $("iph").textContent = r.preheader || "";
@@ -284,7 +307,9 @@
   function check(c, el) {
     const P = App.prep(c); const sel = c.selected.map(k => P.get(k)).filter(Boolean);
     const sample = sel.find(p => !p.block && p.analysis.ok) || sel[0];
-    const res = N.campaign.check(c, App.S, sample ? sample.lead : N.campaign.sampleLead(App.L.leads, c, App.S), sel.length);
+    const all = checkAll(c, sample ? sample.lead : N.campaign.sampleLead(App.L.leads, c, App.S), sel.length);
+    const vids = Object.keys(all.by); const ui = App.S.ui; const cv = all.by[ui.checkVar] ? ui.checkVar : vids[0];
+    const res = all.by[cv];
     const blocked = {}, unq = [], warned = [];
     for (const p of sel) { if (p.block) blocked[p.block.replace(/ in [A-Z]{2}$/, "")] = (blocked[p.block.replace(/ in [A-Z]{2}$/, "")] || 0) + 1; else if (!p.analysis.ok) unq.push(p); }
     const okN = sel.filter(p => !p.block && p.analysis.ok).length;
@@ -296,7 +321,8 @@
       <div class="grid2">
         <div class="panel"><div class="scorecard"><div class="bigscore grade-${res.grade}" style="border:4px solid ${ringColor}"><div class="g">${res.grade}</div><div class="s">${res.score}/100</div></div>
           <div><h2>Deliverability &amp; compliance</h2><div class="small muted" style="margin-top:4px">${res.errors ? `<b class="bad">${App.plural(res.errors, "thing")} to fix</b> before sending · ` : "<b class=\"good\">Nothing blocking</b> · "}${App.plural(res.warns, "improvement")} · ${App.plural(res.tips, "tip")}</div>
-          <div class="small faint" style="margin-top:6px">Checked against a real rendered email${sample ? " (for " + esc(sample.lead.name) + ")" : ""}. Scores measure what spam filters and mortgage-advertising rules look at; they don’t replace a compliance review.</div></div></div></div>
+          <div class="small faint" style="margin-top:6px">Checked against a real rendered email${sample ? " (for " + esc(sample.lead.name) + ")" : ""}. Scores measure what spam filters and mortgage-advertising rules look at; they don’t replace a compliance review.</div>
+          ${vids.length > 1 ? `<div class="row" style="margin-top:10px;gap:6px">${vids.map(id => `<button class="chip ${id === cv ? "on" : ""}" data-cv="${id}">Version ${id} <span class="scorepill grade-${all.by[id].grade}" style="padding:0 6px">${all.by[id].grade}</span></button>`).join("")}</div>` : ""}</div></div></div>
         <div class="panel"><h2>Audience</h2>
           <div class="stats" style="margin:10px 0 8px"><div class="stat"><div class="v brand">${okN.toLocaleString()}</div><div class="l">Will be sent</div></div><div class="stat"><div class="v">${Object.values(blocked).reduce((a, b) => a + b, 0).toLocaleString()}</div><div class="l">Can’t be emailed</div></div><div class="stat"><div class="v">${unq.length.toLocaleString()}</div><div class="l">No longer qualify</div></div></div>
           ${Object.keys(blocked).length ? `<div class="small">${Object.entries(blocked).map(([r, n]) => `<span class="tag block">${esc(r)}: ${n}</span>`).join(" ")}</div>` : ""}
@@ -305,7 +331,15 @@
       </div>
       <div class="panel"><h2>Findings</h2>${res.issues.length ? Object.keys(areas).map(a => { const is = res.issues.filter(i => i.area === a).sort((x, y) => "ewt".indexOf(x.level[0]) - "ewt".indexOf(y.level[0])); return is.length ? `<div style="margin-top:12px"><div class="small" style="font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px">${areas[a]}</div>${is.map(i => `<div class="issue"><div><span class="tag ${lv[i.level][0]}">${lv[i.level][1]}</span></div><div><div class="m">${esc(i.msg)}</div>${i.fix ? `<div class="x">${esc(i.fix)}</div>` : ""}</div></div>`).join("")}</div>` : ""; }).join("") : `<div class="callout good" style="margin-top:10px">No issues found.</div>`}</div>
       ${warnSample.length ? `<div class="panel"><h2>Lead-level warnings</h2><div class="hint">These leads will still be sent; worth a look.</div><div class="tablewrap" style="max-height:320px"><table class="data"><tbody>${warnSample.slice(0, 100).map(x => `<tr><td>${esc(x.p.lead.name)}<div class="tiny faint">${esc(x.p.lead.email)}</div></td><td class="wrap small">${x.w.map(esc).join("<br>")}</td></tr>`).join("")}</tbody></table></div></div>` : ""}`;
+    el.querySelectorAll("[data-cv]").forEach(b => b.onclick = () => { ui.checkVar = b.dataset.cv; App.save(); check(c, el); });
     if ($("prune")) $("prune").onclick = () => { const bad = new Set(sel.filter(p => p.block || !p.analysis.ok).map(p => p.key)); c.selected = c.selected.filter(k => !bad.has(k)); App.save(); App.render(); App.toast(App.plural(bad.size, "lead") + " removed"); };
+  }
+
+  /* every A/B version checked; sending is locked if any has an error */
+  function checkAll(c, lead, vol) {
+    const by = {}; for (const v of N.ab.active(c)) by[v.id] = N.campaign.check(c, App.S, lead, vol, v.id);
+    const worst = Object.values(by).sort((a, b) => a.score - b.score)[0];
+    return { by, worst };
   }
 
   /* ================= 5. SEND ================= */
@@ -314,7 +348,9 @@
     const s = App.S.settings, from = s.from;
     const P = App.prep(c); const sel = c.selected.map(k => P.get(k)).filter(Boolean);
     const okN = sel.filter(p => !p.block && p.analysis.ok).length;
-    const res = N.campaign.check(c, App.S, (sel.find(p => !p.block && p.analysis.ok) || {}).lead || null, sel.length);
+    const res = checkAll(c, (sel.find(p => !p.block && p.analysis.ok) || {}).lead || null, sel.length).worst;
+    const okKeys = sel.filter(p => !p.block && p.analysis.ok).map(p => p.key);
+    const abOn = c.ab.on && c.variants.length > 1; const plan = abOn ? N.ab.plan(c, okKeys) : null;
     const provLabel = (App.providerCatalog || []).find(p => p.id === s.provider);
     const st = liveStatus[c.id] || null;
     const k = st && st.counts || c.sendCounts || null;
@@ -332,22 +368,25 @@
             <tr><td class="muted">From</td><td>${esc(sampleFrom(c, sel) || from.fromNameTpl)} &lt;${esc(from.fromEmail || "not set")}&gt;</td></tr>
             <tr><td class="muted">Reply-to</td><td>${from.replyToMode === "banker" ? "Each lead’s banker (or the default sender)" : esc(from.replyTo || "Same as From")}</td></tr>
             <tr><td class="muted">Pace</td><td>${from.ratePerMinute || 30} per minute${from.dailyCap ? " · max " + (+from.dailyCap).toLocaleString() + " per day" : ""} · ${etaText(okN, from)}</td></tr>
-            <tr><td class="muted">Score</td><td><span class="scorepill grade-${res.grade}">${res.grade} · ${res.score}</span></td></tr>
+            ${abOn ? `<tr><td class="muted">A/B test</td><td>${c.ab.mode === "winner" ? `Test ${c.ab.testPct}% first \u2014 ` : "Even split \u2014 "}${Object.entries(plan.counts).map(([id, n]) => `<b>${id}</b> ${n.toLocaleString()}`).join(" \u00b7 ")}${plan.held ? ` \u00b7 ${plan.held.toLocaleString()} held for the winner` : ""}</td></tr>` : ""}
+            <tr><td class="muted">Score</td><td><span class="scorepill grade-${res.grade}">${res.grade} · ${res.score}</span>${abOn ? ' <span class="small faint">lowest of the versions</span>' : ""}</td></tr>
           </tbody></table>
           <div class="row" style="margin-top:16px">
             ${st && (st.status === "done" || st.status === "cancelled") && st.provider !== "dryrun" ? `<span class="tag ${st.status === "done" ? "ok" : "no"}" style="font-size:13px;padding:6px 12px">${st.status === "done" ? "\u2713 Campaign " + (dry ? "dry run finished" : "sent") : "Campaign cancelled"}</span><span class="small muted">Duplicate it (Campaigns list) to send to a new audience.</span>`
+            : st && st.status === "testdone" ? `<span class="tag warn" style="font-size:13px;padding:6px 12px">Test group sent \u2014 pick a winner below</span>`
             : running ? `<button class="btn" id="pause">Pause</button>` : `<button class="btn primary" id="go" ${!App.desktop || !okN || res.errors && !dry ? "disabled" : ""}>${st && st.status === "paused" ? "Resume sending" : dry ? (st && st.provider === "dryrun" && st.status === "done" ? "Run dry run again" : "Run dry run for " + okN.toLocaleString()) : "Send to " + okN.toLocaleString()}</button>`}
             ${st && (st.status === "paused" || running) ? `<button class="btn danger" id="cancel">Cancel campaign</button>` : ""}
             ${App.desktop ? `<button class="btn ghost" id="outbox">${dry ? "Open dry-run folder" : "Open test folder"}</button>` : ""}
           </div>
           ${res.errors && !dry ? `<div class="small bad" style="margin-top:8px">Sending is locked until the errors in Check are fixed.</div>` : ""}
         </div>
-        <div class="panel"><h2>Send a test</h2><div class="hint">Sends the proposal for the lead shown in the Message preview to your own inbox, with “[TEST]” in the subject. Check it on your phone and in Outlook.</div>
-          <div class="row"><input type="email" id="testTo" placeholder="you@neighborhoodmc.com" value="${esc(from.testTo || "")}" style="flex:1"><button class="btn" id="test" ${App.desktop ? "" : "disabled"}>Send test</button></div>
+        <div class="panel"><h2>Send a test</h2><div class="hint">Sends the proposal for the lead shown in the Message preview to your own inbox, with “[TEST]” in the subject${abOn ? " \u2014 one email per version" : ""}. Check it on your phone and in Outlook.</div>
+          <div class="row"><input type="email" id="testTo" placeholder="you@neighborhoodmc.com" value="${esc(from.testTo || "")}" style="flex:1"><button class="btn" id="test" ${App.desktop ? "" : "disabled"}>Send test${abOn ? "s" : ""}</button></div>
           <div class="small muted" id="testRes" style="margin-top:8px"></div></div>
       </div>
+      ${abOn || (st && st.ab) ? abResults(c, st) : ""}
       <div class="panel"><div class="row"><h2>Progress</h2><span class="spacer"></span>${st ? `<span class="small muted">${esc(st.reason || "")}</span>` : ""}<button class="btn sm" id="logExp" ${App.desktop ? "" : "disabled"}>Export log CSV</button></div>
-        ${k ? `<div class="stats" style="margin:10px 0"><div class="stat"><div class="v good">${k.sent.toLocaleString()}</div><div class="l">Sent</div></div><div class="stat"><div class="v">${k.queued.toLocaleString()}</div><div class="l">Waiting</div></div><div class="stat"><div class="v ${k.failed ? "brand" : ""}">${k.failed.toLocaleString()}</div><div class="l">Failed</div></div><div class="stat"><div class="v">${k.skipped.toLocaleString()}</div><div class="l">Skipped</div></div><div class="stat"><div class="v">${st ? (st.sentToday || 0).toLocaleString() : "—"}</div><div class="l">Sent today (all campaigns)</div></div></div>
+        ${k ? `<div class="stats" style="margin:10px 0"><div class="stat"><div class="v good">${k.sent.toLocaleString()}</div><div class="l">Sent</div></div><div class="stat"><div class="v">${k.queued.toLocaleString()}</div><div class="l">Waiting</div></div><div class="stat"><div class="v ${k.failed ? "brand" : ""}">${k.failed.toLocaleString()}</div><div class="l">Failed</div></div><div class="stat"><div class="v">${k.skipped.toLocaleString()}</div><div class="l">Skipped</div></div>${k.held ? `<div class="stat"><div class="v">${k.held.toLocaleString()}</div><div class="l">Held for the A/B winner</div></div>` : ""}<div class="stat"><div class="v">${st ? (st.sentToday || 0).toLocaleString() : "—"}</div><div class="l">Sent today (all campaigns)</div></div></div>
           <div class="progress"><div class="s" style="width:${pctOf(k.sent, k.total)}%"></div><div class="f" style="width:${pctOf(k.failed, k.total)}%"></div><div class="k" style="width:${pctOf(k.skipped, k.total)}%"></div></div>
           <div id="log" style="margin-top:14px"></div>` : `<div class="small muted" style="margin-top:6px">Not started.</div>`}
       </div>`;
@@ -358,8 +397,9 @@
       const to = testTo.value.trim(); if (!N.fields.validEmail(to)) { App.toast("Enter your email address"); return; }
       const leads = previewLeads(c); const lead = leads[Math.min(App.S.ui.prevIdx || 0, leads.length - 1)]; if (!lead) { App.toast("No lead to preview"); return; }
       App.saveNow(); $("testRes").textContent = "Sending…";
-      const r = await window.nmc.send.test(c.id, N.campaign.keyOf(lead), to);
-      $("testRes").innerHTML = r.ok && r.value.ok ? `<span class="good">✓ ${dry ? "Saved to the test folder (dry run)" : "Sent — check " + esc(to)}.</span> Rendered for ${esc(lead.name)}.` : `<span class="bad">${esc(r.ok ? r.value.error : r.error)}</span>`;
+      const vs = N.ab.active(c).map(v => v.id); let bad = null;
+      for (const vid of vs) { const r = await window.nmc.send.test(c.id, N.campaign.keyOf(lead), to, vid); if (!(r.ok && r.value.ok)) { bad = r.ok ? r.value.error : r.error; break; } }
+      $("testRes").innerHTML = !bad ? `<span class="good">✓ ${dry ? "Saved to the test folder (dry run)" : "Sent " + (vs.length > 1 ? vs.length + " versions " : "") + "\u2014 check " + esc(to)}.</span> Rendered for ${esc(lead.name)}.` : `<span class="bad">${esc(bad)}</span>`;
     };
     if ($("go")) $("go").onclick = async () => {
       const resume = st && st.status === "paused";
@@ -374,9 +414,43 @@
       const r = await window.nmc.send.cancel(c.id); if (r.ok) { liveStatus[c.id] = Object.assign({}, st, { status: "cancelled", reason: "Cancelled" }); c.sendState = "cancelled"; App.save(); send(c, el); App.renderSide(); } };
     if ($("outbox")) $("outbox").onclick = () => window.nmc.openOutbox(dry ? c.id : c.id + "-tests");
     $("logExp").onclick = async () => { const r = await window.nmc.send.log(c.id); if (!r.ok || !r.value.length) { App.toast("Nothing in the log yet"); return; }
-      App.download(c.name.replace(/[^\w-]+/g, "-") + "-send-log.csv", N.csv.stringify(["key", "email", "name", "status", "attempts", "at", "id", "error"], r.value), "csv"); };
+      App.download(c.name.replace(/[^\w-]+/g, "-") + "-send-log.csv", N.csv.stringify(["key", "email", "name", "variant", "status", "attempts", "at", "id", "error"], r.value), "csv"); };
+    wireAb(c, st, el);
     if (k) loadLog(c);
     if (App.desktop && !st) window.nmc.send.status(c.id).then(r => { if (r.ok && r.value) { liveStatus[c.id] = r.value; setState(c, r.value); if (App.cur() === c && c.step === "send") send(c, el); } });
+  }
+  /* A/B results: sent counts come from the send log; opens/clicks/replies are typed in from the email service's
+     report (per-variant tags "variant-A"/"variant-B" are on every email so the service can break them out) */
+  function abResults(c, st) {
+    const byVar = (st && st.counts && st.counts.byVariant) || (c.sendCounts && c.sendCounts.byVariant) || {};
+    const S = N.ab.stats(c, byVar, c.ab.metric); const held = st && st.counts ? st.counts.held : 0;
+    const testdone = st && st.status === "testdone";
+    const pct = x => (x * 100).toFixed(1) + "%";
+    return `<div class="panel"><div class="row"><h2>A/B results</h2><span class="spacer"></span>
+        <label class="f" style="flex-direction:row;align-items:center;gap:6px">Judge by<select id="abMetric" style="width:auto;min-height:30px;padding:3px 8px">${["clicks", "replies", "opens"].map(m => `<option ${S.metric === m ? "selected" : ""}>${m}</option>`).join("")}</select></label></div>
+      <div class="hint">Sent counts fill in automatically. Copy opens, clicks and replies for each version from your email service\u2019s report (every email is tagged <span class="kbd">variant-A</span>, <span class="kbd">variant-B</span>\u2026). Clicks and replies are more reliable than opens \u2014 Apple Mail pre-loads emails and inflates opens.</div>
+      <table class="data"><thead><tr><th>Version</th><th class="num">Sent</th><th class="num">Opens</th><th class="num">Clicks</th><th class="num">Replies</th><th class="num">${S.metric} rate</th><th>vs. leader</th></tr></thead><tbody>
+      ${S.rows.map(r => `<tr><td><b>${r.id}</b> <span class="small muted">${esc(r.name !== r.id ? r.name : "")}</span>${S.best === r.id ? ' <span class="tag ok">leading</span>' : ""}${st && st.winner === r.id ? ' <span class="tag info">winner</span>' : ""}</td><td class="num">${r.sent.toLocaleString()}</td>
+        ${["opens", "clicks", "replies"].map(m => `<td class="num"><input type="number" min="0" data-res="${r.id}|${m}" value="${r[m] || ""}" style="width:80px;min-height:28px;padding:2px 6px;text-align:right"></td>`).join("")}
+        <td class="num"><b>${r.sent ? pct(r.rate) : "\u2014"}</b></td><td class="small muted">${r.p == null ? "" : r.p < 0.05 ? "significantly lower" : "within chance (p=" + r.p.toFixed(2) + ")"}</td></tr>`).join("")}
+      </tbody></table>
+      <div class="callout ${S.confident ? "good" : "info"}" style="margin:12px 0 0">${esc(S.verdict)}.</div>
+      ${testdone || held ? `<div class="row" style="margin-top:12px"><span class="small"><b>${(held || 0).toLocaleString()}</b> leads are waiting for the winner.</span><span class="spacer"></span>
+        ${N.ab.active(c).map(v => `<button class="btn ${S.best === v.id ? "primary" : ""}" data-win="${v.id}" ${testdone && App.desktop ? "" : "disabled"}>Send the rest with ${v.id}</button>`).join("")}</div>
+        ${!testdone ? '<div class="tiny faint" style="margin-top:4px">Available once the test group has finished sending.</div>' : ""}` : ""}
+    </div>`;
+  }
+  function wireAb(c, st, el) {
+    const m = $("abMetric"); if (!m) return;
+    m.onchange = () => { c.ab.metric = m.value; App.save(); send(c, el); };
+    el.querySelectorAll("[data-res]").forEach(i => i.onchange = () => { const [id, k] = i.dataset.res.split("|"); c.ab.results[id] = c.ab.results[id] || {}; c.ab.results[id][k] = App.num(i.value) || 0; App.save(); send(c, el); });
+    el.querySelectorAll("[data-win]").forEach(b => b.onclick = async () => {
+      const id = b.dataset.win; const held = st && st.counts ? st.counts.held : 0; const vv = c.variants.find(v => v.id === id) || {};
+      if (!await App.confirm("Send the rest with version " + id + "?", `<p>${App.plural(held, "lead")} will get version ${id}${vv.name && vv.name !== id ? " (\u201c" + esc(vv.name) + "\u201d)" : ""}. Each is re-checked right before sending.</p>`, "Send to " + held.toLocaleString())) return;
+      App.saveNow(); await window.nmc.flush();
+      const r = await window.nmc.send.sendRemainder(c.id, id); if (!r.ok) { App.toast(r.error, 5000); return; }
+      c.ab.winner = id; liveStatus[c.id] = r.value; setState(c, r.value); send(c, el);
+    });
   }
   function sampleFrom(c, sel) { const p = sel.find(x => !x.block && x.analysis.ok); return p ? N.campaign.prepare(p.lead, c, App.S, { render: true }).message.fromName : ""; }
   const pctOf = (a, b) => b ? Math.round(a / b * 1000) / 10 : 0;
@@ -385,11 +459,12 @@
   async function loadLog(c) {
     const box = $("log"); if (!box || !App.desktop) return;
     const r = await window.nmc.send.log(c.id); if (!r.ok) return;
-    const items = r.value.filter(i => i.status !== "queued").sort((a, b) => (b.at || "").localeCompare(a.at || "")).slice(0, 200);
+    const items = r.value.filter(i => i.status !== "queued" && i.status !== "held").sort((a, b) => (b.at || "").localeCompare(a.at || "")).slice(0, 200);
     const tag = { sent: "ok", failed: "block", skipped: "no" };
-    box.innerHTML = items.length ? `<div class="tablewrap" style="max-height:360px"><table class="data"><thead><tr><th>Status</th><th>Email</th><th>Name</th><th>When</th><th>Detail</th></tr></thead><tbody>${items.map(i => `<tr><td><span class="tag ${tag[i.status] || "info"}">${i.status}</span></td><td>${esc(i.email)}</td><td>${esc(i.name || "")}</td><td class="small muted">${i.at ? new Date(i.at).toLocaleTimeString() : ""}</td><td class="wrap small ${i.status === "failed" ? "bad" : "muted"}">${esc(i.error || i.id || "")}</td></tr>`).join("")}</tbody></table></div><div class="tiny faint" style="margin-top:4px">Latest 200 — export for the full log.</div>` : "";
+    const hasVar = r.value.some(i => i.variant && i.variant !== "A");
+    box.innerHTML = items.length ? `<div class="tablewrap" style="max-height:360px"><table class="data"><thead><tr><th>Status</th>${hasVar ? "<th>Ver.</th>" : ""}<th>Email</th><th>Name</th><th>When</th><th>Detail</th></tr></thead><tbody>${items.map(i => `<tr><td><span class="tag ${tag[i.status] || "info"}">${i.status}</span></td>${hasVar ? `<td>${esc(i.variant || "")}</td>` : ""}<td>${esc(i.email)}</td><td>${esc(i.name || "")}</td><td class="small muted">${i.at ? new Date(i.at).toLocaleTimeString() : ""}</td><td class="wrap small ${i.status === "failed" ? "bad" : "muted"}">${esc(i.error || i.id || "")}</td></tr>`).join("")}</tbody></table></div><div class="tiny faint" style="margin-top:4px">Latest 200 — export for the full log.</div>` : "";
   }
-  function setState(c, st) { if (!st) return; const map = { running: "sending", paused: "paused", done: "done", cancelled: "cancelled" }; c.sendState = map[st.status] || ""; c.sendDry = st.provider === "dryrun"; if (st.counts) c.sendCounts = st.counts; App.save(); }
+  function setState(c, st) { if (!st) return; const map = { running: "sending", paused: "paused", done: "done", cancelled: "cancelled", testdone: "testdone" }; c.sendState = map[st.status] || ""; c.sendDry = st.provider === "dryrun"; if (st.counts) c.sendCounts = st.counts; App.save(); }
 
   /* live progress from the desktop shell */
   if (window.nmc && window.nmc.send) {
@@ -399,6 +474,6 @@
       if (prev && prev.status !== st.status && App.S.ui.screen === "campaign" && App.cur() === c) { App.render(); return; }
       clearTimeout(rt); rt = setTimeout(() => { App.renderSide(); const cur = App.cur(); if (App.S.ui.screen === "campaign" && cur && cur.id === c.id && c.step === "send") send(c, $("stepbody")); }, 400);
     });
-    window.nmc.send.onDone(st => { const c = App.S.campaigns.find(x => x.id === st.campaignId); App.toast("“" + (c ? c.name : "Campaign") + "” finished — " + st.counts.sent.toLocaleString() + " sent", 6000); });
+    window.nmc.send.onDone(st => { const c = App.S.campaigns.find(x => x.id === st.campaignId); if (st.status === "testdone") { App.toast("\u201c" + (c ? c.name : "Campaign") + "\u201d test group sent \u2014 enter results and pick a winner", 6000); return; } App.toast("“" + (c ? c.name : "Campaign") + "” finished — " + st.counts.sent.toLocaleString() + " sent", 6000); });
   }
 })();

@@ -139,6 +139,6 @@
       let b; try { b = JSON.parse(r.result); } catch (e) { App.toast("That isn’t a backup file"); return; }
       if (!b.settings || !b.campaigns) { App.toast("That isn’t a backup file"); return; }
       if (await App.confirm("Restore this backup?", `<p>Replaces settings, ${App.plural(b.campaigns.length, "campaign")}, mappings and the suppression list (${(b.suppression || []).length.toLocaleString()} addresses). Leads and API keys are not touched.</p>`, "Restore")) {
-        App.S.settings = b.settings; App.S.campaigns = b.campaigns; App.S.presets = b.presets || []; App.S.suppression = b.suppression || []; App.saveNow(); await App.load(); App.render(); App.toast("Restored"); } }; r.readAsText(i.files[0]); }; i.click(); };
+        App.S.settings = b.settings; App.S.campaigns = b.campaigns; App.S.presets = b.presets || []; App.S.suppression = b.suppression || []; App.S.watchlist = b.watchlist || []; App.saveNow(); await App.load(); App.render(); App.toast("Restored"); } }; r.readAsText(i.files[0]); }; i.click(); };
   }
 })();
